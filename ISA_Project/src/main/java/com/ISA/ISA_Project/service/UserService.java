@@ -26,5 +26,10 @@ public class UserService {
 		}
 		return true;
 	}
+	
+	public User findOneUserByEmail(String email) {
+		return userRepository.findOneByEmail(email);
+	}
+
 
 }

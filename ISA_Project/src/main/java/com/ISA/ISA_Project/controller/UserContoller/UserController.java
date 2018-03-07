@@ -1,5 +1,6 @@
 package com.ISA.ISA_Project.controller.UserContoller;
 
+import com.ISA.ISA_Project.controller.UserContoller.dto.LoginDTO;
 import com.ISA.ISA_Project.controller.UserContoller.dto.RegistrationDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.User;
@@ -39,5 +40,20 @@ public class UserController {
         }
 
         return new MessageResponseDTO("User is registrated");
+    }
+    
+    @PostMapping("/login")
+    public MessageResponseDTO login(@RequestBody LoginDTO loginDTO){
+    	User temp = userService.findOneUserByEmail(loginDTO.getEmail());
+    	
+    	if(temp == null)
+    		return new MessageResponseDTO("Invalid email address");
+    	if(!(temp.getPassword().equals(loginDTO.getPassword())))
+    		return new MessageResponseDTO("Invalid password");
+    	if(!(temp.isActive()))
+    		return new MessageResponseDTO("User is not active");
+    	
+    	
+    	return new MessageResponseDTO("Login success");
     }
 }
