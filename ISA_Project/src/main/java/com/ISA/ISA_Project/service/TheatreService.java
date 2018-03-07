@@ -11,20 +11,12 @@ import com.ISA.ISA_Project.theatre.Theatre;
 @Service
 public class TheatreService {
 	@Autowired
-private TheatreRepository therep;
+	private TheatreRepository therep;
 
+	public List<Theatre> getAllTheatres() {
 
+		return therep.findAll();
 
-
-
-public List<Theatre>getAllTheatres(){
-	
-	return therep.findAll();
-	
-}
-
-
-
-
+	}
 
 }
