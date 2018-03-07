@@ -2,7 +2,7 @@ package com.ISA.ISA_Project.response;
 
 import java.util.List;
 
-import com.ISA.ISA_Project.cinema.Cinema;
+import com.ISA.ISA_Project.domain.Cinema;
 
 public class CinemaResponse {
 

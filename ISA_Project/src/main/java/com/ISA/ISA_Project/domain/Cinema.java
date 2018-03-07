@@ -1,4 +1,4 @@
-package com.ISA.ISA_Project.cinema;
+package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
 

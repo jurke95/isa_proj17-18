@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ISA.ISA_Project.cinema.Cinema;
+import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.repository.TheatreRepository;
 import com.ISA.ISA_Project.response.CinemaResponse;
 import com.ISA.ISA_Project.response.TheatreResponse;
@@ -30,12 +30,12 @@ public class TheatreController {
 	
 	
 	@GetMapping("/getTheatres")
-	public ResponseEntity<TheatreResponse>getTheatres(){
+	public TheatreResponse getTheatres(){
 		
 		List<Theatre>listt=theatreService.getAllTheatres();
 		
 		
-		return new ResponseEntity<>(new TheatreResponse(listt),HttpStatus.OK);
+		return new TheatreResponse(listt);
 		
 	}
 	
