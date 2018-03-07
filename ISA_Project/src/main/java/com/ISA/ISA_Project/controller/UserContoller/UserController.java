@@ -20,15 +20,24 @@ public class UserController {
     public MessageResponseDTO registration(@RequestBody RegistrationDTO registrationDTO){
 
         User user = new User();
-        user.setUsername(registrationDTO.getUsername());
-        user.setPassword(registrationDTO.getPassword());
+ 
         user.setEmail(registrationDTO.getEmail());
+        if(registrationDTO.getPassword1().equals((registrationDTO.getPassword2())))
+        	user.setPassword(registrationDTO.getPassword1());
+        else return new MessageResponseDTO("password1 and password2 are not equal");
+        user.setName(registrationDTO.getName());
+        user.setSurname(registrationDTO.getSurname());
+        user.setCity(registrationDTO.getCity());
+        user.setPhoneNumber(registrationDTO.getPhoneNumber());
+        if(!(userService.checkUniqueEmail(registrationDTO.getEmail()))) {
+        	return new MessageResponseDTO("This email already exists");
+        }
         User temp = userService.registrateUser(user);
 
         if(temp == null){
-            return new MessageResponseDTO("korisnik nije registrovan");
+            return new MessageResponseDTO("User is not registrated");
         }
 
-        return new MessageResponseDTO("korisnik je kreiran");
+        return new MessageResponseDTO("User is registrated");
     }
 }

@@ -12,21 +12,17 @@ public class User implements Serializable {
     private Long id;
 
     @NotNull
-    private String username;
     private String email;
     private String role;
     private String password;
+    private String name;
+    private String surname;
+    private String city;
+    private String phoneNumber;   
+    private boolean active;
 
     public User(){
 
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {
@@ -52,4 +48,54 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+    
+    
 }

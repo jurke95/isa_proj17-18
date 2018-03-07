@@ -10,14 +10,21 @@ import java.sql.SQLException;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
-    public User registrateUser(User user) {
-        user.setRole("USER");
-        user = userRepository.save(user);
-        return user;
-    }
+	public User registrateUser(User user) {
+		user.setRole("USER");
+		user.setActive(false);
+		user = userRepository.save(user);
+		return user;
+	}
 
+	public boolean checkUniqueEmail(String email) {
+		if (userRepository.findOneByEmail(email) != null) {
+			return false;
+		}
+		return true;
+	}
 
 }
