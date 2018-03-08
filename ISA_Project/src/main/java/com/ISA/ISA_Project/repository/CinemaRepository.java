@@ -10,4 +10,6 @@ public interface CinemaRepository extends JpaRepository<Cinema,Long>{
 
 	List<Cinema> findAll();
 	List<Cinema> findAllByName(String name);
+	Cinema findOneById(Long id);
+	Cinema findOneByName(String name);
 }

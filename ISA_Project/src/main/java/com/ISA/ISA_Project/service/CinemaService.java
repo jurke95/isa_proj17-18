@@ -27,6 +27,30 @@ public class CinemaService {
 	}
 	
 	
+	public Cinema registrateCinema(Cinema cinema){
+		
+		
+		cinrep.save(cinema);
+		return cinema;
+	}
 	
+	public boolean checkUniqueId(Long idd){
+		
+		if(cinrep.findOneById(idd)!=null){
+			return false;
+		}else
+			return true;
+			
+
+	}
 	
-}
+	public boolean checkUniqueName(String n){
+			
+		
+		if(cinrep.findOneByName(n)!=null){
+			return false;
+		}else
+			return true;
+	}
+
+	}
