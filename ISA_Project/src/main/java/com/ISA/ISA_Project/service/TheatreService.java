@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.repository.TheatreRepository;
 import com.ISA.ISA_Project.theatre.Theatre;
 
@@ -18,5 +19,39 @@ public class TheatreService {
 		return therep.findAll();
 
 	}
+	
+	
+	
+    public Theatre registrateTheatre(Theatre t){
+		
+		
+		therep.save(t);
+		return t;
+	}
+	
+	public boolean checkUniqueId(Long idd){
+		
+		if(therep.findOneById(idd)!=null){
+			return false;
+		}else
+			return true;
+			
+
+	}
+	
+	public boolean checkUniqueName(String n){
+			
+		
+		if(therep.findOneByName(n)!=null){
+			return false;
+		}else
+			return true;
+	}
+	
+	
+	
+	
+	
+	
 
 }
