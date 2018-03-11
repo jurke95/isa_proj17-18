@@ -26,6 +26,12 @@ public class CinemaService {
 		return cinrep.findAll();
 	}
 	
+	public Cinema getCinema(Long id){
+		
+		return cinrep.findOneById(id);
+	}
+	
+	
 	
 	public Cinema registrateCinema(Cinema cinema){
 		

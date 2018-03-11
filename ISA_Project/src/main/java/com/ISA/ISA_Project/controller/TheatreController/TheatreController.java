@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,19 @@ public class TheatreController {
 		return new TheatreResponse(listt);
 		
 	}
+	
+	@GetMapping("getTheatres/{id}")
+	public Theatre getTheatre(@PathVariable("id")Long id){
+		
+		Theatre theatre=theatreService.getTheatre(id);
+		return theatre;
+		
+		
+		
+	}
+	
+	
+	
 	
 	@PostMapping("/registration")
 	public MessageResponseDTO registrationThe(@RequestBody TheatreDTO theatreDTO){

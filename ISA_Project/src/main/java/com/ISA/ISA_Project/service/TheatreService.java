@@ -20,6 +20,10 @@ public class TheatreService {
 
 	}
 	
+    public Theatre getTheatre(Long id){
+		
+		return therep.findOneById(id);
+	}
 	
 	
     public Theatre registrateTheatre(Theatre t){

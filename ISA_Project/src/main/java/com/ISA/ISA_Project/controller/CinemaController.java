@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +34,17 @@ public class CinemaController {
 		
 		List<Cinema>listc=cinemaService.getAllCinemas();
 		return new CinemaResponse(listc);
+		
+	}
+	
+	
+	@GetMapping("getCinemas/{id}")
+	public Cinema getCinema(@PathVariable("id")Long id){
+		
+		Cinema cinema=cinemaService.getCinema(id);
+		return cinema;
+		
+		
 		
 	}
 	
