@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.TheatreController.dto.TheatreDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Theatre;
@@ -83,6 +84,34 @@ public class TheatreController {
 		
 		
 	}
+	
+	@PostMapping("/editTheatre/{id}")
+	public MessageResponseDTO editTheatre(@RequestBody TheatreDTO theatreDTO,@PathVariable("id")Long id){
+		
+		theatreService.TheatreEdit(theatreDTO, id);
+		
+		
+		return new MessageResponseDTO("Theatre edited");
+	}
+	
+	@PostMapping("/deleteTheatre/{id}")
+	public MessageResponseDTO deleteTheatre(@PathVariable("id")Long id){
+		
+		//theatreService.TheatreEdit(theatreDTO, id);
+		
+		
+		return new MessageResponseDTO("Theatre deleted");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
