@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.repository.CinemaRepository;
 
@@ -58,5 +59,34 @@ public class CinemaService {
 		}else
 			return true;
 	}
+	
+	public void  CinemaEdit(CinemaDTO cinemaDTO,Long id){
+		
+		Cinema c=cinrep.findOneById(id);
+		c.setName(cinemaDTO.getName());
+		c.setLocation(cinemaDTO.getLocation());
+		c.setPromOpis(cinemaDTO.getPromOpis());
+		
+		cinrep.save(c);
+		
+		
+	}
+	
+	public void CinemaDelete(Long id){
+		
+		cinrep.delete(cinrep.findOneById(id));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	}

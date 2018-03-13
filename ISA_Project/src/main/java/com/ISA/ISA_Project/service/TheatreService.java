@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
+import com.ISA.ISA_Project.controller.TheatreController.dto.TheatreDTO;
+import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.domain.Theatre;
 import com.ISA.ISA_Project.repository.TheatreRepository;
 
@@ -51,10 +54,24 @@ public class TheatreService {
 			return true;
 	}
 	
+public void  TheatreEdit(TheatreDTO theatreDTO,Long id){
+		
+		Theatre t=therep.findOneById(id);
+		t.setName(theatreDTO.getName());
+		t.setLocation(theatreDTO.getLocation());
+		t.setPromOpis(theatreDTO.getPromOpis());
+		
+		therep.save(t);
 	
 	
+}
+
+
+public void TheatreDelete(Long id){
 	
-	
+	therep.delete(therep.findOneById(id));
+}
+
 	
 
 }

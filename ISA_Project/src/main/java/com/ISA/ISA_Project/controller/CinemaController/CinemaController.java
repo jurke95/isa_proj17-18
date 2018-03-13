@@ -77,7 +77,22 @@ public class CinemaController {
 		
 	}
 	
+	@PostMapping("/editCinema/{id}")
+	public MessageResponseDTO editCinema(@RequestBody CinemaDTO cinemaDTO,@PathVariable("id")Long id){
+		
+		cinemaService.CinemaEdit(cinemaDTO, id);
+		
+		
+		return new MessageResponseDTO("Cinema edited");
+	}
 	
-	
+	@PostMapping("/deleteCinema/{id}")
+	public MessageResponseDTO deleteCinema(@PathVariable("id")Long id){
+		
+		//theatreService.TheatreEdit(theatreDTO, id);
+		
+		
+		return new MessageResponseDTO("Cinema deleted");
+	}
 	
 }

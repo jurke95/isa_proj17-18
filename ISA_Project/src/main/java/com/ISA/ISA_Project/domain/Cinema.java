@@ -1,6 +1,7 @@
 package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,8 @@ public class Cinema implements Serializable {
 	private Long id;
 	private String name;
 	private String location;
+	
+	private String promOpis;
 	
 	public Cinema(){
 		
@@ -45,6 +48,17 @@ public class Cinema implements Serializable {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+	
+
+	public String getPromOpis() {
+		return promOpis;
+	}
+
+	public void setPromOpis(String promOpis) {
+		this.promOpis = promOpis;
+	}
+	
 	
 	
 	
