@@ -1,13 +1,13 @@
-package com.ISA.ISA_Project.controller;
+package com.ISA.ISA_Project.controller.TheatreController.dto;
 
-public class CinemaDTO {
+public class TheatreDTO {
 
 	
 	private Long id;
 	private String name;
 	private String location;
-	
-	public CinemaDTO(){
+
+	public TheatreDTO(){
 		
 	}
 
@@ -34,13 +34,6 @@ public class CinemaDTO {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

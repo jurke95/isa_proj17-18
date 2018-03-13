@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ISA.ISA_Project.domain.Cinema;
-import com.ISA.ISA_Project.theatre.Theatre;
+import com.ISA.ISA_Project.domain.Theatre;
 @Repository
 public interface TheatreRepository extends JpaRepository<Theatre,Long>{
 	
