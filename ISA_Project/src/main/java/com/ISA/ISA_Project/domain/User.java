@@ -20,9 +20,10 @@ public class User implements Serializable {
     private String city;
     private String phoneNumber;   
     private boolean active;
+    private String confirmationToken;
 
     public User(){
-
+    
     }
 
     public String getEmail() {
@@ -96,6 +97,15 @@ public class User implements Serializable {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	public String getConfirmationToken() {
+		return confirmationToken;
+	}
+
+	public void setConfirmationToken(String confirmationToken) {
+		this.confirmationToken = confirmationToken;
+	}
     
+	
     
 }

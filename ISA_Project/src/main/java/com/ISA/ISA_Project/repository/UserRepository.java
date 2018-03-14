@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User,Long> {
 
 	User findOneByEmail(String email);
+	User findByConfirmationToken(String confirmationToken);
 }
