@@ -90,9 +90,9 @@ public class CinemaController {
 	@DeleteMapping("/deleteCinema/{id}")
 	public MessageResponseDTO deleteCinema(@PathVariable("id")Long id){
 		
-		
+
 		cinemaService.CinemaDelete(id);
-		
+
 		return new MessageResponseDTO("Cinema deleted");
 	}
 	
