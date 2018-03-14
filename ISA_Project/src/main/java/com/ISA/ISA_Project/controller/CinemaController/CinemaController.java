@@ -3,6 +3,7 @@ package com.ISA.ISA_Project.controller.CinemaController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -86,11 +87,11 @@ public class CinemaController {
 		return new MessageResponseDTO("Cinema edited");
 	}
 	
-	@PostMapping("/deleteCinema/{id}")
+	@DeleteMapping("/deleteCinema/{id}")
 	public MessageResponseDTO deleteCinema(@PathVariable("id")Long id){
 		
-		//theatreService.TheatreEdit(theatreDTO, id);
 		
+		cinemaService.CinemaDelete(id);
 		
 		return new MessageResponseDTO("Cinema deleted");
 	}
