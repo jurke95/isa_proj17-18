@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Item implements Serializable {
+public class Ad implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,11 @@ public class Item implements Serializable {
 	@NotNull
 	private String name;
 	
-	private Long owner;
+	private String description;
+	
+	private String date;
+	
+	private String image;
 
 	public Long getId() {
 		return id;
@@ -36,14 +40,35 @@ public class Item implements Serializable {
 		this.name = name;
 	}
 
-	public Long getOwner() {
-		return owner;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setOwner(Long owner) {
-		this.owner = owner;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

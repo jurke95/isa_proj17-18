@@ -5,19 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ISA.ISA_Project.domain.Item;
-import com.ISA.ISA_Project.repository.ItemRepository;
+import com.ISA.ISA_Project.domain.Product;
+import com.ISA.ISA_Project.repository.ProductRepository;
 
 @Service
-public class ItemService {
+public class ProductService {
 
 	
 	@Autowired
-	private ItemRepository itemRepository;
+	private ProductRepository itemRepository;
 	
 	
 	
-	public List<Item>getAllItems(){
+	public List<Product>getAllItems(){
 		
 		return itemRepository.findAll();
 	}
