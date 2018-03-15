@@ -34,12 +34,12 @@ public class UserService {
 		user.setActive(false);
 		user.setConfirmationToken(UUID.randomUUID().toString());
 		user = userRepository.save(user);
-		String appUrl = "http://";
+		String appUrl = "http://localhost:8084";//request.getScheme() + "://" + request.getServerName();
 		SimpleMailMessage registrationEmail=new SimpleMailMessage();
 		registrationEmail.setTo(user.getEmail());
 		registrationEmail.setSubject("Registration Confirmation");
 		registrationEmail.setText("To confirm your e-mail address, please click the link below:\n"
-		+appUrl+ user.getConfirmationToken());
+		+appUrl+"/user/confirm?token="+ user.getConfirmationToken());
 		emailService.sendEmail(registrationEmail);
 		
 		
@@ -62,5 +62,9 @@ public class UserService {
     public User findByConfirmationToken(String confirmationToken){
     	
     	return userRepository.findByConfirmationToken(confirmationToken);
+    }
+    
+    public void saveUser(User user) {
+    	userRepository.save(user);
     }
 }

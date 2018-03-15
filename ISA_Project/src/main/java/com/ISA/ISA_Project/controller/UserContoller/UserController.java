@@ -1,13 +1,17 @@
 package com.ISA.ISA_Project.controller.UserContoller;
 
-import com.ISA.ISA_Project.controller.EmailController.EmailController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.ISA.ISA_Project.controller.UserContoller.dto.LoginDTO;
 import com.ISA.ISA_Project.controller.UserContoller.dto.RegistrationDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -90,5 +94,17 @@ public class UserController {
 		}
 
 		return new MessageResponseDTO("User is registrated");
+	}
+	@PostMapping("/confirm")
+	public MessageResponseDTO emailConfirm(@RequestParam("token") String token) {
+		
+		User user = userService.findByConfirmationToken(token);
+		
+		if(user==null) {
+			return new MessageResponseDTO("Oops! This token is invalid!");
+		}
+		user.setActive(true);
+		userService.saveUser(user);
+	return new MessageResponseDTO("User is activated");
 	}
 }
