@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.FanZoneController.dto.AdDTO;
 import com.ISA.ISA_Project.controller.FanZoneController.dto.ProductDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
@@ -127,8 +128,8 @@ public class FanZoneController {
 		return new MessageResponseDTO("Successfully added ad");
 	}
 	
-	@PostMapping("/editProduct")
-    public MessageResponseDTO editProduct(@RequestBody ProductDTO productDTO){
+	@PostMapping("/editProduct/{id}")
+    public MessageResponseDTO editProduct(@RequestBody ProductDTO productDTO,@PathVariable("id")Long id){
 		// treba samo ispraviti da prilikom editovanja ne dozvolimo da se id inkrementuje i sacuva  rekvizit kao sasvim novi
 		Product p=new Product();
 		
@@ -137,7 +138,7 @@ public class FanZoneController {
 			return new MessageResponseDTO("You cannot edit non-existing product");
 		}
 		
-		
+		p.setId(id);
 		p.setName(productDTO.getName());
 		p.setDescription(productDTO.getDescription());
 		p.setImage(productDTO.getImage());
@@ -154,8 +155,8 @@ public class FanZoneController {
 		return new MessageResponseDTO("Successfully edited product");
 	}
 	
-	@PostMapping("/editAd")
-    public MessageResponseDTO editAd(@RequestBody AdDTO adDTO){
+	@PostMapping("/editAd/{id}")
+    public MessageResponseDTO editAd(@RequestBody AdDTO adDTO,@PathVariable("id")Long id){
 		
 		Ad a=new Ad();
 		
@@ -164,7 +165,7 @@ public class FanZoneController {
 			return new MessageResponseDTO("You cannot edit non-existing ad");
 		}
 		
-		
+		a.setId(id);
 		a.setName(adDTO.getName());
 		a.setDescription(adDTO.getDescription());
 		a.setImage(adDTO.getImage());
