@@ -9,202 +9,195 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.FanZoneController.dto.AdDTO;
 import com.ISA.ISA_Project.controller.FanZoneController.dto.ProductDTO;
+import com.ISA.ISA_Project.controller.FanZoneController.dto.ReservationDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Ad;
-import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.domain.Product;
-import com.ISA.ISA_Project.domain.User;
+import com.ISA.ISA_Project.domain.Reservation;
 import com.ISA.ISA_Project.repository.FanZoneRepository;
-import com.ISA.ISA_Project.repository.ProductRepository;
 import com.ISA.ISA_Project.response.AdResponse;
-import com.ISA.ISA_Project.response.CinemaResponse;
 import com.ISA.ISA_Project.response.ProductResponse;
 import com.ISA.ISA_Project.service.AdService;
 import com.ISA.ISA_Project.service.ProductService;
+import com.ISA.ISA_Project.service.ReservationService;
 
 @RestController
 @RequestMapping("/fanzone")
 public class FanZoneController {
 
-	
 	@Autowired
 	private FanZoneRepository fanzoneRepository;
-	
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@Autowired
 	private AdService adService;
-	
-	
-	
+
+	@Autowired
+	private ReservationService reservationService;
+
 	@GetMapping("/getProducts")
 	public ProductResponse getProducts() {
 
-		List<Product>listp=productService.getAllItems();
+		List<Product> listp = productService.getAllItems();
 		return new ProductResponse(listp);
-		
-		
+
 	}
-	
-	
+
 	@GetMapping("/getAds")
 	public AdResponse getAds() {
 
-		List<Ad>lista=adService.getAllItems();
+		List<Ad> lista = adService.getAllItems();
 		return new AdResponse(lista);
-		
-		
+
 	}
-	
+
 	@GetMapping("getProducts/{id}")
-	public Product getProduct(@PathVariable("id")Long id){
-		
-		Product product=productService.getProduct(id);
+	public Product getProduct(@PathVariable("id") Long id) {
+
+		Product product = productService.getProduct(id);
 		return product;
 	}
-	
+
 	@GetMapping("getAds/{id}")
-	public Ad getAds(@PathVariable("id")Long id){
-		
-		Ad ad=adService.getAd(id);
+	public Ad getAds(@PathVariable("id") Long id) {
+
+		Ad ad = adService.getAd(id);
 		return ad;
 	}
-	
-	
+
 	@PostMapping("/addProducts")
-	public MessageResponseDTO addProduct(@RequestBody ProductDTO productDTO){
-		
-		Product p=new Product();
+	public MessageResponseDTO addProduct(@RequestBody ProductDTO productDTO) {
+
+		Product p = new Product();
 		if (!(productService.checkUniqueProduct(productDTO.getId()))) {
 			return new MessageResponseDTO("This product already exists");
 		}
-		
+
 		p.setName(productDTO.getName());
 		p.setDescription(productDTO.getDescription());
 		p.setImage(productDTO.getImage());
 		p.setBoxoffice(productDTO.getBoxoffice());
-		
-		Product temp=productService.saveProduct(p);
-		
 
-		if (temp == null) 
+		Product temp = productService.saveProduct(p);
+
+		if (temp == null)
 			return new MessageResponseDTO("Cannot add product");
-		
-		
-		
-		
+
 		return new MessageResponseDTO("Successfully added product");
 	}
-	
+
 	@PostMapping("/addAd")
-	public MessageResponseDTO addAd(@RequestBody AdDTO adDTO){
-		
-		Ad a=new Ad();
+	public MessageResponseDTO addAd(@RequestBody AdDTO adDTO) {
+
+		Ad a = new Ad();
 		if (!(adService.checkUniqueAd(adDTO.getId()))) {
 			return new MessageResponseDTO("This ad already exists");
 		}
-		
+
 		a.setName(adDTO.getName());
 		a.setDescription(adDTO.getDescription());
 		a.setImage(adDTO.getImage());
 		a.setDate(adDTO.getDate());
-		
-		Ad temp=adService.saveAd(a);
-		
 
-		if (temp == null) 
+		Ad temp = adService.saveAd(a);
+
+		if (temp == null)
 			return new MessageResponseDTO("Cannot add ad");
-		
-		
-		
-		
+
 		return new MessageResponseDTO("Successfully added ad");
 	}
-	
+
 	@PostMapping("/editProduct/{id}")
-    public MessageResponseDTO editProduct(@RequestBody ProductDTO productDTO,@PathVariable("id")Long id){
-		// treba samo ispraviti da prilikom editovanja ne dozvolimo da se id inkrementuje i sacuva  rekvizit kao sasvim novi
-		Product p=new Product();
-		
-		
+	public MessageResponseDTO editProduct(@RequestBody ProductDTO productDTO, @PathVariable("id") Long id) {
+		// treba samo ispraviti da prilikom editovanja ne dozvolimo da se id
+		// inkrementuje i sacuva rekvizit kao sasvim novi
+		Product p = new Product();
+
 		if ((productService.checkUniqueProduct(productDTO.getId()))) {
 			return new MessageResponseDTO("You cannot edit non-existing product");
 		}
-		
+
 		p.setId(id);
 		p.setName(productDTO.getName());
 		p.setDescription(productDTO.getDescription());
 		p.setImage(productDTO.getImage());
 		p.setBoxoffice(productDTO.getBoxoffice());
-		
-		Product temp=productService.saveProduct(p);
-		
 
-		if (temp == null) 
+		Product temp = productService.saveProduct(p);
+
+		if (temp == null)
 			return new MessageResponseDTO("Cannot edit product");
-		
-		
-		
+
 		return new MessageResponseDTO("Successfully edited product");
 	}
-	
+
 	@PostMapping("/editAd/{id}")
-    public MessageResponseDTO editAd(@RequestBody AdDTO adDTO,@PathVariable("id")Long id){
-		
-		Ad a=new Ad();
-		
-		
+	public MessageResponseDTO editAd(@RequestBody AdDTO adDTO, @PathVariable("id") Long id) {
+
+		Ad a = new Ad();
+
 		if ((adService.checkUniqueAd(adDTO.getId()))) {
 			return new MessageResponseDTO("You cannot edit non-existing ad");
 		}
-		
+
 		a.setId(id);
 		a.setName(adDTO.getName());
 		a.setDescription(adDTO.getDescription());
 		a.setImage(adDTO.getImage());
 		a.setDate(adDTO.getDate());
-		
-		Ad temp=adService.saveAd(a);
-		
 
-		if (temp == null) 
+		Ad temp = adService.saveAd(a);
+
+		if (temp == null)
 			return new MessageResponseDTO("Cannot edit ad");
-		
-		
-		
-		
+
 		return new MessageResponseDTO("Successfully edited ad");
 	}
-	
-	
+
 	@DeleteMapping("/deleteProducts/{id}")
-	public MessageResponseDTO deleteProducts(@PathVariable("id")Long id){
-		
-		
+	public MessageResponseDTO deleteProducts(@PathVariable("id") Long id) {
+
 		productService.deleteProduct(id);
-		
-	
+
 		return new MessageResponseDTO("Successfully deleted product");
 	}
-	
+
 	@DeleteMapping("/deleteAds/{id}")
-	public MessageResponseDTO deleteAds(@PathVariable("id")Long id){
-		
-		
+	public MessageResponseDTO deleteAds(@PathVariable("id") Long id) {
+
 		adService.deleteAd(id);
-		
-	
+
 		return new MessageResponseDTO("Successfully deleted ad");
 	}
+
+	@PostMapping("/reservationProduct")
+	public MessageResponseDTO reservationProduct(@RequestParam("userId") Long userId,
+			@RequestParam("productId") Long productId) {
+		Reservation reservation = new Reservation();
+		reservation.setProductId(productId);
+		reservation.setUserId(userId);
+		
+		Reservation temp = reservationService.saveReservation(reservation);
+
+		if (temp == null)
+			return new MessageResponseDTO("Cannot not a successful booking");
+		
+		return new MessageResponseDTO("successfully booked");
+	}
 	
-	
-	
-	
+	@DeleteMapping("/deleteReservation/{id}")
+	public MessageResponseDTO deleteReservation(@PathVariable("id") Long id) {
+		
+		reservationService.deleteReservation(id);
+		
+		return new MessageResponseDTO("Successfully deleted reservation");
+	}
+
 }
