@@ -8,6 +8,7 @@ public class ProductDTO {
 	private String description;
 	private String image;
 	private String boxoffice;
+	private Long iduser;
 	
 	
 	public ProductDTO(){
@@ -63,6 +64,16 @@ public class ProductDTO {
 
 	public void setBoxoffice(String boxoffice) {
 		this.boxoffice = boxoffice;
+	}
+
+
+	public Long getIduser() {
+		return iduser;
+	}
+
+
+	public void setIduser(Long iduser) {
+		this.iduser = iduser;
 	}
 	
 	

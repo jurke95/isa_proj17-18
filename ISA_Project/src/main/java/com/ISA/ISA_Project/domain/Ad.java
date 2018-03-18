@@ -1,12 +1,17 @@
 package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Ad implements Serializable {
@@ -20,9 +25,14 @@ public class Ad implements Serializable {
 	
 	private String description;
 	
-	private String date;
+	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	private Date date;
 	
 	private String image;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User adMaker;
 
 	public Long getId() {
 		return id;
@@ -48,11 +58,12 @@ public class Ad implements Serializable {
 		this.description = description;
 	}
 
-	public String getDate() {
+	
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -62,6 +73,14 @@ public class Ad implements Serializable {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public User getAdMaker() {
+		return adMaker;
+	}
+
+	public void setAdMaker(User adMaker) {
+		this.adMaker = adMaker;
 	}
 	
 	

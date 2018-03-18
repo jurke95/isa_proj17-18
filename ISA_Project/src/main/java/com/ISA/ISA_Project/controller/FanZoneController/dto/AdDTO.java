@@ -1,11 +1,13 @@
 package com.ISA.ISA_Project.controller.FanZoneController.dto;
 
+import java.util.Date;
+
 public class AdDTO {
 
 	private Long id;
 	private String name;
 	private String description;
-	private String date;
+	private Date date;
 	private String image;
 	
 	
@@ -45,12 +47,12 @@ public class AdDTO {
 	}
 
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

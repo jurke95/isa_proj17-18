@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -23,6 +25,11 @@ public class Product implements Serializable {
 	private String image;
 	
 	private String boxoffice;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User buyer;
+	
 
 	public Long getId() {
 		return id;
@@ -62,6 +69,14 @@ public class Product implements Serializable {
 
 	public void setBoxoffice(String boxoffice) {
 		this.boxoffice = boxoffice;
+	}
+
+	public User getBuyer() {
+		return buyer;
+	}
+
+	public void setBuyer(User buyer) {
+		this.buyer = buyer;
 	}
 
 	

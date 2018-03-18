@@ -67,4 +67,21 @@ public class UserService {
     public void saveUser(User user) {
     	userRepository.save(user);
     }
+    
+    
+    public User findOneUserById(Long id) {
+		return userRepository.findOneById(id);
+	}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
