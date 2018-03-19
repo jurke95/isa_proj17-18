@@ -2,12 +2,16 @@ package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -25,6 +29,8 @@ public class Ad implements Serializable {
 	
 	private String description;
 	
+	private Long offer;
+	
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date date;
 	
@@ -33,6 +39,14 @@ public class Ad implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User adMaker;
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "bidder_ad", joinColumns = @JoinColumn(name = "ad_id", referencedColumnName = "id"), 
+    inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+	private Set<User> bidders;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -81,6 +95,22 @@ public class Ad implements Serializable {
 
 	public void setAdMaker(User adMaker) {
 		this.adMaker = adMaker;
+	}
+
+	public Long getOffer() {
+		return offer;
+	}
+
+	public void setOffer(Long offer) {
+		this.offer = offer;
+	}
+
+	public Set<User> getBidders() {
+		return bidders;
+	}
+
+	public void setBidders(Set<User> bidders) {
+		this.bidders = bidders;
 	}
 	
 	

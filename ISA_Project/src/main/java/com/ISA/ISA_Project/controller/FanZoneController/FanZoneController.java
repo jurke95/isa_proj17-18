@@ -17,6 +17,7 @@ import com.ISA.ISA_Project.controller.FanZoneController.dto.ProductDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Ad;
 import com.ISA.ISA_Project.domain.Product;
+import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.FanZoneRepository;
 import com.ISA.ISA_Project.response.AdResponse;
 import com.ISA.ISA_Project.response.ProductResponse;
@@ -213,6 +214,28 @@ public class FanZoneController {
 		reservationService.deleteReservation(id);
 		
 		return new MessageResponseDTO("Successfully deleted reservation");
+	}
+	
+	@PostMapping("/makeOffer/{id}")
+	public MessageResponseDTO makeOffer(@PathVariable("id") Long id,@RequestParam("userId") String userId,
+			@RequestParam("offer") String offer)
+	{
+		Long o=Long.parseLong(offer);
+		Long u=Long.parseLong(userId);
+		
+		User bidder = userService.findOneUserById(u);
+		
+		Ad ad = adService.getAd(id);
+		ad.getBidders().add(bidder);
+		ad.setOffer(o);
+		
+		Ad temp = adService.saveAd(ad);
+		
+		if (temp == null)
+			return new MessageResponseDTO("Cannot add ad");
+
+		return new MessageResponseDTO("Successfully add ad");
+		
 	}
 
 }
