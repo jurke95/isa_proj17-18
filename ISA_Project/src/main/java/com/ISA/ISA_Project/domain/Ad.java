@@ -23,30 +23,28 @@ public class Ad implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	private String name;
-	
+
 	private String description;
-	
-	private Long offer;
-	
+
 	@DateTimeFormat(pattern = "dd/mm/yyyy")
 	private Date date;
-	
+
 	private String image;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User adMaker;
-	
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "bidder_ad", joinColumns = @JoinColumn(name = "ad_id", referencedColumnName = "id"), 
-    inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-	private Set<User> bidders;
-	
-	
+
+	/*
+	 * @ManyToMany(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinTable(name = "bidder_ad", joinColumns = @JoinColumn(name = "ad_id",
+	 * referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name =
+	 * "user_id", referencedColumnName = "id")) private Set<User> bidders;
+	 */
 
 	public Long getId() {
 		return id;
@@ -72,7 +70,6 @@ public class Ad implements Serializable {
 		this.description = description;
 	}
 
-	
 	public Date getDate() {
 		return date;
 	}
@@ -97,32 +94,4 @@ public class Ad implements Serializable {
 		this.adMaker = adMaker;
 	}
 
-	public Long getOffer() {
-		return offer;
-	}
-
-	public void setOffer(Long offer) {
-		this.offer = offer;
-	}
-
-	public Set<User> getBidders() {
-		return bidders;
-	}
-
-	public void setBidders(Set<User> bidders) {
-		this.bidders = bidders;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

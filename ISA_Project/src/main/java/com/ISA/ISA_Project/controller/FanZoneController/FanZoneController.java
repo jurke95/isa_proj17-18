@@ -16,12 +16,14 @@ import com.ISA.ISA_Project.controller.FanZoneController.dto.AdDTO;
 import com.ISA.ISA_Project.controller.FanZoneController.dto.ProductDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Ad;
+import com.ISA.ISA_Project.domain.Offer;
 import com.ISA.ISA_Project.domain.Product;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.FanZoneRepository;
 import com.ISA.ISA_Project.response.AdResponse;
 import com.ISA.ISA_Project.response.ProductResponse;
 import com.ISA.ISA_Project.service.AdService;
+import com.ISA.ISA_Project.service.OfferService;
 import com.ISA.ISA_Project.service.ProductService;
 import com.ISA.ISA_Project.service.ReservationService;
 import com.ISA.ISA_Project.service.UserService;
@@ -38,12 +40,15 @@ public class FanZoneController {
 
 	@Autowired
 	private AdService adService;
-	
+
 	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private ReservationService reservationService;
+
+	@Autowired
+	private OfferService offerService;
 
 	@GetMapping("/getProducts")
 	public ProductResponse getProducts() {
@@ -97,22 +102,22 @@ public class FanZoneController {
 	}
 
 	@PostMapping("/addAd")
-	public MessageResponseDTO addAd(@RequestBody AdDTO adDTO,@RequestParam("userId") String userId) {
+	public MessageResponseDTO addAd(@RequestBody AdDTO adDTO, @RequestParam("userId") String userId) {
 
 		Ad a = new Ad();
 		if (!(adService.checkUniqueAd(adDTO.getId()))) {
 			return new MessageResponseDTO("This ad already exists");
 		}
 
-		Long u=Long.parseLong(userId);
+		Long u = Long.parseLong(userId);
 		a.setAdMaker(userService.findOneUserById(u));
 		a.setName(adDTO.getName());
 		a.setDescription(adDTO.getDescription());
 		a.setImage(adDTO.getImage());
 		a.setDate(adDTO.getDate());
 
-		//fali deo za slanje oglasa na odobrenje Administratoru
-		//takodje deo za ponude PONUDJIVAC-OGLAS (many-to-many relationship)
+		// fali deo za slanje oglasa na odobrenje Administratoru
+		// takodje deo za ponude PONUDJIVAC-OGLAS (many-to-many relationship)
 		Ad temp = adService.saveAd(a);
 
 		if (temp == null)
@@ -123,7 +128,7 @@ public class FanZoneController {
 
 	@PostMapping("/editProduct/{id}")
 	public MessageResponseDTO editProduct(@RequestBody ProductDTO productDTO, @PathVariable("id") Long id) {
-		
+
 		Product p = new Product();
 
 		if ((productService.checkUniqueProduct(productDTO.getId()))) {
@@ -185,57 +190,53 @@ public class FanZoneController {
 
 	@PostMapping("/reservationProduct")
 	public MessageResponseDTO reservationProduct(@RequestParam("userId") String userId,
-			@RequestParam("productId") String productId,@RequestParam(value = "checkboxName", required = false) String checkboxValue) {
-		
-		 if(checkboxValue != null)
-		  {
-		    //System.out.println("checkbox is checked");
-		  }
-		  else
-		  {
-		   // System.out.println("checkbox is not checked");
-		  }
-		//necemo raditi zabranu rezervacije istog rekvizita od drugog korisnika( u slucaju da je vec prethodno rezervisan) u back-endu
-		// vec cemo tu zabranu odraditi na u front -endu jednostavno cemo posle rezervacije onemoguciti dalji klik na dugme rezervisi za taj rekvizit 
-		 
-		Long prod=Long.parseLong(productId);
-		Long u=Long.parseLong(userId);
+			@RequestParam("productId") String productId,
+			@RequestParam(value = "checkboxName", required = false) String checkboxValue) {
+
+		if (checkboxValue != null) {
+			// System.out.println("checkbox is checked");
+		} else {
+			// System.out.println("checkbox is not checked");
+		}
+		// necemo raditi zabranu rezervacije istog rekvizita od drugog korisnika( u
+		// slucaju da je vec prethodno rezervisan) u back-endu
+		// vec cemo tu zabranu odraditi na u front -endu jednostavno cemo posle
+		// rezervacije onemoguciti dalji klik na dugme rezervisi za taj rekvizit
+
+		Long prod = Long.parseLong(productId);
+		Long u = Long.parseLong(userId);
 		productService.getProduct(prod).setBuyer(userService.findOneUserById(u));
-		
+
 		productService.saveProduct(productService.getProduct(prod));
-		
-		
+
 		return new MessageResponseDTO("successfully booked");
 	}
-	
+
 	@DeleteMapping("/deleteReservation/{id}")
 	public MessageResponseDTO deleteReservation(@PathVariable("id") Long id) {
-		
+
 		reservationService.deleteReservation(id);
-		
+
 		return new MessageResponseDTO("Successfully deleted reservation");
 	}
-	
-	@PostMapping("/makeOffer/{id}")
-	public MessageResponseDTO makeOffer(@PathVariable("id") Long id,@RequestParam("userId") String userId,
-			@RequestParam("offer") String offer)
-	{
-		Long o=Long.parseLong(offer);
-		Long u=Long.parseLong(userId);
-		
-		User bidder = userService.findOneUserById(u);
-		
-		Ad ad = adService.getAd(id);
-		ad.getBidders().add(bidder);
-		ad.setOffer(o);
-		
-		Ad temp = adService.saveAd(ad);
-		
-		if (temp == null)
-			return new MessageResponseDTO("Cannot add ad");
 
-		return new MessageResponseDTO("Successfully add ad");
-		
+	@PostMapping("/makeOffer/{id}")
+	public MessageResponseDTO makeOffer(@PathVariable("id") Long id, @RequestParam("userId") String userId,
+			@RequestParam("offer") String offer) {
+		Long o = Long.parseLong(offer); // Koliko nudi para
+		Long u = Long.parseLong(userId); // Ko nudi
+
+		User bidder = userService.findOneUserById(u);
+		Offer offer_new = new Offer();
+		offer_new.setBidder(bidder);
+		offer_new.setBid(o);
+		offer_new.setAd(adService.getAd(id));
+			
+
+		offerService.saveOffer(offer_new);
+
+		return new MessageResponseDTO("Successfully offer");
+
 	}
 
 }
