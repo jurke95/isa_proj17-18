@@ -238,5 +238,17 @@ public class FanZoneController {
 		return new MessageResponseDTO("Successfully offer");
 
 	}
+	
+	@PostMapping("/acceptTheOffer/{id}")
+	public MessageResponseDTO acceptTheOffer(@PathVariable("id") Long id, @RequestParam("userId") String userId) {
+		//id je od oglasa
+		Long u = Long.parseLong(userId); // Ko je poslao tu ponudu
+		User winner = userService.findOneUserById(u);
+		Ad ad = adService.getAd(id);
+		User user = ad.getAdMaker();
+		userService.aceptTheOffer(user,winner,ad);
+		return new MessageResponseDTO("Successfully send mail for offer");
+	}
+	
 
 }

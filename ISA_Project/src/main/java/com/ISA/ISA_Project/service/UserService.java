@@ -1,19 +1,19 @@
 package com.ISA.ISA_Project.service;
 
-import com.ISA.ISA_Project.controller.EmailController.EmailController;
-import com.ISA.ISA_Project.domain.User;
-import com.ISA.ISA_Project.repository.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.SQLException;
-import java.util.UUID;
+import com.ISA.ISA_Project.controller.EmailController.EmailController;
+import com.ISA.ISA_Project.domain.Ad;
+import com.ISA.ISA_Project.domain.Offer;
+import com.ISA.ISA_Project.domain.User;
+import com.ISA.ISA_Project.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -25,6 +25,9 @@ public class UserService {
 	private EmailController emailController;
 	@Autowired
 	private EmailService emailService;
+	
+	@Autowired
+	private OfferService offerService;
 	
 	@Autowired
 	private JavaMailSender sender;
@@ -46,6 +49,33 @@ public class UserService {
 		
 		
 		return user;
+	}
+	
+	public void aceptTheOffer(User user ,User winner,Ad ad) {
+		List<Offer> listOffers = offerService.getAllOffersByAd(ad); 
+		List<User> listUsers = new ArrayList<User>();
+
+		for(Offer temp : listOffers) {
+			listUsers.add(temp.getBidder()); //punimo listu sa userima koji su dali ponudu bas na ovaj oglas
+		}
+		
+		for (User temp: listUsers) {
+		    if (temp==winner) {
+		    	SimpleMailMessage registrationEmail=new SimpleMailMessage();
+				registrationEmail.setTo(temp.getEmail());
+				registrationEmail.setSubject("Auction for "+ad.getName());
+				registrationEmail.setText("Your bid for the "+ ad.getName() + "has been accepted by "+ user.getName()+"\n"
+						+"Contact seller: "+user.getName()+" "+user.getSurname()+" "+"Email: "+user.getEmail()+" Phone: "+ user.getPhoneNumber());
+				emailService.sendEmail(registrationEmail);
+		    }
+		    else {
+		    	SimpleMailMessage registrationEmail=new SimpleMailMessage();
+				registrationEmail.setTo(temp.getEmail());
+				registrationEmail.setSubject("Auction for "+ad.getName());
+				registrationEmail.setText("Your bid for the "+ ad.getName() + " is not accepted. ");
+				emailService.sendEmail(registrationEmail);
+		    }
+		}
 	}
 
 	public boolean checkUniqueEmail(String email) {
@@ -73,7 +103,9 @@ public class UserService {
 		return userRepository.findOneById(id);
 	}
 
-    
+    public List<User> findAllUsers() {
+		return userRepository.findAll();
+	}
     
     
     
