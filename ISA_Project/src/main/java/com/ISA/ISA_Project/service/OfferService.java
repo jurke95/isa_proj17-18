@@ -50,4 +50,8 @@ public class OfferService {
 		offerRepository.save(offer);
 	}
 
+	public Offer findOfferbyId(Long id) {
+		
+		return offerRepository.findOneById(id);
+	}
 }

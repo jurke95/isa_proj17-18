@@ -231,24 +231,49 @@ public class FanZoneController {
 		offer_new.setBidder(bidder);
 		offer_new.setBid(o);
 		offer_new.setAd(adService.getAd(id));
-			
 
 		offerService.saveOffer(offer_new);
 
 		return new MessageResponseDTO("Successfully offer");
 
 	}
-	
+
 	@PostMapping("/acceptTheOffer/{id}")
 	public MessageResponseDTO acceptTheOffer(@PathVariable("id") Long id, @RequestParam("userId") String userId) {
-		//id je od oglasa
+		// id je od oglasa
 		Long u = Long.parseLong(userId); // Ko je poslao tu ponudu
 		User winner = userService.findOneUserById(u);
 		Ad ad = adService.getAd(id);
 		User user = ad.getAdMaker();
-		userService.aceptTheOffer(user,winner,ad);
+		userService.aceptTheOffer(user, winner, ad);
 		return new MessageResponseDTO("Successfully send mail for offer");
 	}
-	
+
+	@PostMapping("/editOffer/{id}")
+	public MessageResponseDTO editOffer(@PathVariable("id") Long id, @RequestParam("bid") String bid) {
+		Long b = Long.parseLong(bid);
+		Offer offer = offerService.findOfferbyId(id);
+		offer.setBid(b);
+		offerService.saveOffer(offer);
+
+		return new MessageResponseDTO("Successfully changed the offer");
+	}
+
+	@GetMapping("/getOffer/{id}")
+	public Offer getOffer(@PathVariable("id") Long id) {
+		return offerService.findOfferbyId(id);
+	}
+
+	@GetMapping("/getAllOffers")
+	public List<Offer> getAllOffers() {
+		return offerService.getAllOffers();
+	}
+
+	@GetMapping("/getOffersForAd/{id}") //id oglasa(Ad)
+	public List<Offer> getOffersForAd(@PathVariable("id") Long id) {
+		Ad ad = adService.getAd(id);
+
+		return offerService.getAllOffersByAd(ad);
+	}
 
 }
