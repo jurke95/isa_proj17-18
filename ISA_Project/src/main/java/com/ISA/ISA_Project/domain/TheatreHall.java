@@ -1,5 +1,6 @@
 package com.ISA.ISA_Project.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class TheatreHall {
+public class TheatreHall implements Serializable  {
 
 	
 	@Id
@@ -33,7 +34,7 @@ public class TheatreHall {
 	
 	
 	
-	@OneToMany(mappedBy = "theatrehall")
+	@OneToMany(mappedBy = "hall")
 	private Set<TheatreSeat> seats;
 
 

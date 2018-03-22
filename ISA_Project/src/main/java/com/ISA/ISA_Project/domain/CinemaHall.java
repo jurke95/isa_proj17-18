@@ -1,5 +1,6 @@
 package com.ISA.ISA_Project.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class CinemaHall {
+public class CinemaHall implements Serializable  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +35,7 @@ public class CinemaHall {
 	
 	
 	
-	@OneToMany(mappedBy = "cinemahall")
+	@OneToMany(mappedBy = "hall")
 	private Set<CinemaSeat> seats;
 
 

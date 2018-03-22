@@ -1,16 +1,26 @@
 package com.ISA.ISA_Project.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
 @Entity
-public class TheatreSeat {
+@IdClass(TheatreSeat.class)
+public class TheatreSeat implements Serializable  {
 
 	
+	@Id
+	private Long id;
 	
+	
+	@Id
 	@ManyToOne
 	@JoinColumn(name = "theatrehall_id")
 	private TheatreHall hall;
@@ -73,6 +83,16 @@ public class TheatreSeat {
 
 	public void setIsfree(boolean isfree) {
 		this.isfree = isfree;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	
