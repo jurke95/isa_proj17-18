@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 
 
 @Entity
-@IdClass(CinemaSeat.class)
+
 public class CinemaSeat implements Serializable  {
 
 	@Id
@@ -28,11 +28,10 @@ public class CinemaSeat implements Serializable  {
 	
 	
 	
-	@Id
+	
 	@ManyToOne
-	@JoinColumns({
-		@JoinColumn(name = "theatrehall_id"),
-		@JoinColumn(name = "theatre_id")})
+	@JoinColumn(name = "cinemahall_id")
+		
 	private CinemaHall hall;
 	
 	private int row;

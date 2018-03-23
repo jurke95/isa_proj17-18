@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-@IdClass(TheatreHall.class)
+
 public class TheatreHall implements Serializable {
 
 	@Id
@@ -22,7 +22,7 @@ public class TheatreHall implements Serializable {
 
 	private String name;
 
-	@Id
+	
 	@ManyToOne
 	@JoinColumn(name = "theatre_id")
 	private Theatre theatre;
