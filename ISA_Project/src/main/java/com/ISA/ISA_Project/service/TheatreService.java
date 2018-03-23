@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.TheatreController.dto.TheatreDTO;
-import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.domain.Theatre;
 import com.ISA.ISA_Project.repository.TheatreRepository;
 

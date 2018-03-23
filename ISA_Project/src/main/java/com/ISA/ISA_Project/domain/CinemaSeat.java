@@ -5,11 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 
 
 
@@ -20,13 +22,17 @@ import javax.persistence.MapsId;
 public class CinemaSeat implements Serializable  {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	
 	
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "cinemahall_id")
+	@JoinColumns({
+		@JoinColumn(name = "theatrehall_id"),
+		@JoinColumn(name = "theatre_id")})
 	private CinemaHall hall;
 	
 	private int row;
@@ -86,6 +92,7 @@ public class CinemaSeat implements Serializable  {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	
 	
 	

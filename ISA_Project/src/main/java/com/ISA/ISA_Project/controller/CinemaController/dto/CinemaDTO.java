@@ -1,16 +1,12 @@
 package com.ISA.ISA_Project.controller.CinemaController.dto;
 
-import java.util.List;
-
-import com.ISA.ISA_Project.domain.Projection;
-
 public class CinemaDTO {
 
 	
 	private Long id;
 	private String name;
 	private String location;
-	private List<Projection>repertoar;
+	//private List<Projection>repertoar;
 	private String promOpis;
 	
 	public CinemaDTO(){
@@ -41,13 +37,13 @@ public class CinemaDTO {
 		this.location = location;
 	}
 
-	public List<Projection> getRepertoar() {
+	/*public List<Projection> getRepertoar() {
 		return repertoar;
 	}
 
 	public void setRepertoar(List<Projection> repertoar) {
 		this.repertoar = repertoar;
-	}
+	}*/
 
 	public String getPromOpis() {
 		return promOpis;

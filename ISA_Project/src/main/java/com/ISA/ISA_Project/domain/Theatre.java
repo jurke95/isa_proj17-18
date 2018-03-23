@@ -1,12 +1,13 @@
 package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Theatre implements Serializable{
@@ -18,6 +19,10 @@ public class Theatre implements Serializable{
 	private String location;
 	//private List<Projection>repertoar;
 	private String promOpis;
+	
+	@OneToMany(mappedBy = "theatre")
+	private Set<TheatreHall> halls;
+	
 	
 	public Theatre(){
 		

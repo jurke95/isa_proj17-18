@@ -1,19 +1,46 @@
-package com.ISA.ISA_Project.controller.ProjectionController.dto;
+package com.ISA.ISA_Project.domain;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.Set;
 
-public class ProjectionDTO {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+public class TheatreProjection implements Serializable {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String name;
+	// private ArrayList<String> listActors;
 	private String actors;
 	private String geners;
 	private String director;
 	private String runtime;
 	private String poster;
+	private String rating;
 	private String storyline;
 
-	public ProjectionDTO() {
+	@OneToMany
+	@JoinColumn(name = "cinnematerm_id")
+	private Set<CinemaTerm> cinemaTerms;
 
+	public TheatreProjection() {
+
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -64,6 +91,14 @@ public class ProjectionDTO {
 		this.poster = poster;
 	}
 
+	public String getRating() {
+		return rating;
+	}
+
+	public void setRating(String rating) {
+		this.rating = rating;
+	}
+
 	public String getStoryline() {
 		return storyline;
 	}
@@ -72,4 +107,13 @@ public class ProjectionDTO {
 		this.storyline = storyline;
 	}
 
+	public Set<CinemaTerm> getCinemaTerms() {
+		return cinemaTerms;
+	}
+
+	public void setCinemaTerms(Set<CinemaTerm> cinemaTerms) {
+		this.cinemaTerms = cinemaTerms;
+	}
+	
+	
 }

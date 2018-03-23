@@ -5,9 +5,12 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 
@@ -17,12 +20,16 @@ public class TheatreSeat implements Serializable  {
 
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	
 	
 	@Id
 	@ManyToOne
-	@JoinColumn(name = "theatrehall_id")
+	@JoinColumns({
+		@JoinColumn(name = "theatrehall_id"),
+		@JoinColumn(name = "theatre_id")})
 	private TheatreHall hall;
 	
 	private int row;
@@ -94,7 +101,8 @@ public class TheatreSeat implements Serializable  {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
+
 	
 	
 	

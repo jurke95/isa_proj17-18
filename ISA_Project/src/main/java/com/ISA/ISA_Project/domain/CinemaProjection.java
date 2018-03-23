@@ -1,15 +1,17 @@
 package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Projection implements Serializable {
+public class CinemaProjection implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +26,12 @@ public class Projection implements Serializable {
 	private String poster;
 	private String rating;
 	private String storyline;
-	private ArrayList<String> hall;
-	private ArrayList<String> time;
-	private String price;
 
-	public Projection() {
+	@OneToMany
+	@JoinColumn(name = "cinnematerm_id")
+	private Set<CinemaTerm> cinemaTerms;
+
+	public CinemaProjection() {
 
 	}
 
@@ -94,30 +97,6 @@ public class Projection implements Serializable {
 
 	public void setStoryline(String storyline) {
 		this.storyline = storyline;
-	}
-
-	public ArrayList<String> getHall() {
-		return hall;
-	}
-
-	public void setHall(ArrayList<String> hall) {
-		this.hall = hall;
-	}
-
-	public ArrayList<String> getTime() {
-		return time;
-	}
-
-	public void setTime(ArrayList<String> time) {
-		this.time = time;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
 	}
 
 	public String getActors() {

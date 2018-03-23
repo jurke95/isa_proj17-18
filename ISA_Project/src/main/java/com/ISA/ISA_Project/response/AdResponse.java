@@ -3,7 +3,6 @@ package com.ISA.ISA_Project.response;
 import java.util.List;
 
 import com.ISA.ISA_Project.domain.Ad;
-import com.ISA.ISA_Project.domain.Product;
 
 public class AdResponse {
 
