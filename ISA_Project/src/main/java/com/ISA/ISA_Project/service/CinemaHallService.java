@@ -19,7 +19,10 @@ public class CinemaHallService {
     }
 	
 	
-	
+     public void deleteCinemaHall(Long id){
+		
+		cinemaHallRepository.delete(cinemaHallRepository.findOneById(id));
+	}
 	
 	
 

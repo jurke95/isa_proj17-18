@@ -8,7 +8,7 @@ import com.ISA.ISA_Project.domain.TheatreHall;
 @Repository
 public interface  TheatreHallRepository extends JpaRepository<TheatreHall,Long> {
 
-	TheatreHall findOneById(TheatreHall id);
+	TheatreHall findOneById(Long id);
 	
 	
 	
