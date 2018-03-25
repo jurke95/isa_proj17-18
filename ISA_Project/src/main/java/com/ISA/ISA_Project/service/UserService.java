@@ -65,7 +65,7 @@ public class UserService {
 				registrationEmail.setTo(temp.getEmail());
 				registrationEmail.setSubject("Auction for "+ad.getName());
 				registrationEmail.setText("Your bid for the "+ ad.getName() + "has been accepted by "+ user.getName()+"\n"
-						+"Contact seller: "+user.getName()+" "+user.getSurname()+" "+"Email: "+user.getEmail()+" Phone: "+ user.getPhoneNumber());
+						+"Contact seller: "+user.getName()+" "+user.getSurname()+" "+"Email: "+user.getEmail()+" Phone: "+ user.getPhonenumber());
 				emailService.sendEmail(registrationEmail);
 		    }
 		    else {
@@ -91,7 +91,7 @@ public class UserService {
 
     public User findByConfirmationToken(String confirmationToken){
     	
-    	return userRepository.findByConfirmationToken(confirmationToken);
+    	return userRepository.findByConfirmationtoken(confirmationToken);
     }
     
     public void saveUser(User user) {

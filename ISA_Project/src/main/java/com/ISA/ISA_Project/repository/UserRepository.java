@@ -8,6 +8,6 @@ import com.ISA.ISA_Project.domain.User;
 public interface UserRepository extends JpaRepository<User,Long> {
 
 	User findOneByEmail(String email);
-	User findByConfirmationToken(String confirmationToken);
+	User findByConfirmationtoken(String confirmationToken);
 	User findOneById(Long id);
 }

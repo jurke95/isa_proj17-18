@@ -32,7 +32,7 @@ public class Ad implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User adMaker;
+	private User admaker;
 
 	/*
 	 * @ManyToMany(cascade = CascadeType.ALL)
@@ -83,11 +83,11 @@ public class Ad implements Serializable {
 	}
 
 	public User getAdMaker() {
-		return adMaker;
+		return admaker;
 	}
 
 	public void setAdMaker(User adMaker) {
-		this.adMaker = adMaker;
+		this.admaker = adMaker;
 	}
 
 }

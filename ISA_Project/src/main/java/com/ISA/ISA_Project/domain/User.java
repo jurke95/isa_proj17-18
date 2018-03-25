@@ -22,9 +22,9 @@ public class User implements Serializable {
     private String name;
     private String surname;
     private String city;
-    private String phoneNumber;   
+    private String phonenumber;   
     private boolean active;
-    private String confirmationToken;
+    private String confirmationtoken;
 
     public User(){
     
@@ -94,20 +94,20 @@ public class User implements Serializable {
 		this.city = city;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getPhonenumber() {
+		return phonenumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+		this.phonenumber = phoneNumber;
 	}
 
 	public String getConfirmationToken() {
-		return confirmationToken;
+		return confirmationtoken;
 	}
 
 	public void setConfirmationToken(String confirmationToken) {
-		this.confirmationToken = confirmationToken;
+		this.confirmationtoken = confirmationToken;
 	}
     
 	
