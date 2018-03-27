@@ -36,7 +36,7 @@ public class CinemaSeat implements Serializable  {
 	
 	private int row;
 	
-	private int seatNumber;
+	private int seatnumber;
 	
 	@Enumerated(EnumType.STRING)
 	private HallSegment segment;
@@ -61,11 +61,11 @@ public class CinemaSeat implements Serializable  {
 	}
 
 	public int getSeatNumber() {
-		return seatNumber;
+		return seatnumber;
 	}
 
 	public void setSeatNumber(int seatNumber) {
-		this.seatNumber = seatNumber;
+		this.seatnumber = seatNumber;
 	}
 
 	public HallSegment getSegment() {

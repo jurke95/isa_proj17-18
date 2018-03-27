@@ -24,4 +24,8 @@ INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`r
 INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`crepertoar`) VALUES ('Maratonci', 'S.Stalone','action','wfwf','130', 'c:/images', '9.9','mmm','1');
 INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`crepertoar`) VALUES ('Ko to tamo peva', 'S.Stalone','action','rbrb','130', 'c:/images', '10.0','ko','1');
 INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`crepertoar`) VALUES ('Zikina dinastija', 'S.Stalone','action','rbt','130', 'c:/images', '9.9','zika','1');
-
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('1', 'sala1','2');
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('2', 'sala1','1');
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('3', 'sala2','1');
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('4', 'sala2','2');
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall_id`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('1','1','1','1','VIP',1);

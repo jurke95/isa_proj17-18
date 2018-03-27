@@ -38,7 +38,7 @@ public class CinemaHall implements Serializable  {
 	@OneToMany(mappedBy = "hall")
 	private Set<CinemaSeat> seats;
 
-
+	
 
 
 	public Long getId() {
