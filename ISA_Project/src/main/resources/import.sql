@@ -17,5 +17,11 @@ INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`, `boxoffice`) 
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('1', '100','2','3');
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('2', '50','2','1');
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('3', '60','2','2');
-
+INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`) VALUES ('RockyBalboa', 'S.Stalone','action','Hickok','130', 'c:/images', '8.6','boks');
+INSERT INTO `peca`.`theatre_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`) VALUES ('RockyBalboa', 'S.Stalone','action','Hickok','130', 'c:/images', '8.6','boks');
+INSERT INTO `peca`.`cinema_repertoar` (`id`, `cinema_id`) VALUES ('1', '2');
+INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`crepertoar`) VALUES ('Kengur', 'N.Glogovac','komedija','Momcilovic','120', 'c:/imagesK', '9.9','kengur','1');
+INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`crepertoar`) VALUES ('Maratonci', 'S.Stalone','action','wfwf','130', 'c:/images', '9.9','mmm','1');
+INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`crepertoar`) VALUES ('Ko to tamo peva', 'S.Stalone','action','rbrb','130', 'c:/images', '10.0','ko','1');
+INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`crepertoar`) VALUES ('Zikina dinastija', 'S.Stalone','action','rbt','130', 'c:/images', '9.9','zika','1');
 

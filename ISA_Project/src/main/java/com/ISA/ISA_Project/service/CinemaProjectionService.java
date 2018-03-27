@@ -1,6 +1,7 @@
 package com.ISA.ISA_Project.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +29,11 @@ public class CinemaProjectionService {
 			return false;
 		}
 		return true;
+	}
+	
+	
+	public Set<CinemaProjection>getAllByRepertoar(Long id){
+		System.out.println("dosaooo u servis  "+id);
+		return cinemaProjectionRepository.findAllByCrepertoar(id);
 	}
 }

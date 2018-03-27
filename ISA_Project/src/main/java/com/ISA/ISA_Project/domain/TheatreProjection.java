@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,7 +19,6 @@ public class TheatreProjection implements Serializable {
 	private Long id;
 
 	private String name;
-	// private ArrayList<String> listActors;
 	private String actors;
 	private String geners;
 	private String director;
@@ -27,10 +27,10 @@ public class TheatreProjection implements Serializable {
 	private String rating;
 	private String storyline;
 
-	@OneToMany
-	@JoinColumn(name = "cinnematerm_id")
-	private Set<CinemaTerm> cinemaTerms;
-
+	@ManyToOne
+	@JoinColumn(name="theatrerepertoar_id")
+	private TheatreRepertoar trepertoar;
+	
 	public TheatreProjection() {
 
 	}
@@ -107,13 +107,15 @@ public class TheatreProjection implements Serializable {
 		this.storyline = storyline;
 	}
 
-	public Set<CinemaTerm> getCinemaTerms() {
-		return cinemaTerms;
+	public TheatreRepertoar getTrepertoar() {
+		return trepertoar;
 	}
 
-	public void setCinemaTerms(Set<CinemaTerm> cinemaTerms) {
-		this.cinemaTerms = cinemaTerms;
+	public void setTrepertoar(TheatreRepertoar trepertoar) {
+		this.trepertoar = trepertoar;
 	}
+
+	
 	
 	
 }

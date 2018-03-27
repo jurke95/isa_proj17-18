@@ -24,6 +24,12 @@ public class TheatreTerm implements Serializable {
 	private Long price;
 	private Time time;
 	
+	@ManyToOne
+	@JoinColumn(name="theatreprojection_id")
+	private TheatreProjection projection;
+	
+	
+	
 	public TheatreTerm() {
 		
 	}
@@ -50,6 +56,22 @@ public class TheatreTerm implements Serializable {
 
 	public void setTime(Time time) {
 		this.time = time;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public TheatreProjection getProjection() {
+		return projection;
+	}
+
+	public void setProjection(TheatreProjection projection) {
+		this.projection = projection;
 	}
 	
 	

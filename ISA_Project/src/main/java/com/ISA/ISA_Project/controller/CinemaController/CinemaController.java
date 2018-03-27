@@ -1,6 +1,7 @@
 package com.ISA.ISA_Project.controller.CinemaController;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Cinema;
+import com.ISA.ISA_Project.domain.CinemaProjection;
 import com.ISA.ISA_Project.repository.CinemaRepository;
+import com.ISA.ISA_Project.response.CinemaRepertoarResponse;
 import com.ISA.ISA_Project.response.CinemaResponse;
+import com.ISA.ISA_Project.service.CinemaProjectionService;
 import com.ISA.ISA_Project.service.CinemaService;
 
 @RestController
@@ -28,6 +32,9 @@ public class CinemaController {
 
     @Autowired 
     private CinemaService cinemaService;
+    
+    @Autowired 
+    private CinemaProjectionService cinemaProjectionService;
 	
 	@GetMapping("/getCinemas")
 	public CinemaResponse getCinemas(){
@@ -95,5 +102,29 @@ public class CinemaController {
 
 		return new MessageResponseDTO("Cinema deleted");
 	}
+	
+	
+	@GetMapping("repertoar/{id}")
+	public CinemaRepertoarResponse getRepertoar(@PathVariable("id")Long id){
+		System.out.println("dosaooo  "+id);
+		Set<CinemaProjection> r=cinemaProjectionService.getAllByRepertoar(id);
+		return new CinemaRepertoarResponse(r);
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -1,11 +1,15 @@
 package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cinema implements Serializable {
@@ -18,7 +22,12 @@ public class Cinema implements Serializable {
 	private String location;
 	
 	private String promOpis;
+
+	@OneToOne(mappedBy = "cinema")
+	private CinemaRepertoar repertoar;
 	
+	
+
 	public Cinema(){
 		
 		
@@ -57,6 +66,16 @@ public class Cinema implements Serializable {
 	public void setPromOpis(String promOpis) {
 		this.promOpis = promOpis;
 	}
+
+	public CinemaRepertoar getRepertoar() {
+		return repertoar;
+	}
+
+	public void setRepertoar(CinemaRepertoar repertoar) {
+		this.repertoar = repertoar;
+	}
+
+	
 	
 	
 	

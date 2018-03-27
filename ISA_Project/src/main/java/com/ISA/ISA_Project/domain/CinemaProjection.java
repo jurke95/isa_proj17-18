@@ -8,7 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class CinemaProjection implements Serializable {
@@ -18,7 +22,6 @@ public class CinemaProjection implements Serializable {
 	private Long id;
 
 	private String name;
-	// private ArrayList<String> listActors;
 	private String actors;
 	private String geners;
 	private String director;
@@ -26,10 +29,12 @@ public class CinemaProjection implements Serializable {
 	private String poster;
 	private String rating;
 	private String storyline;
+	
+	@ManyToOne
+	@JoinColumn(name="crepertoar")
+	private CinemaRepertoar crepertoar;
 
-	@OneToMany
-	@JoinColumn(name = "cinnematerm_id")
-	private Set<CinemaTerm> cinemaTerms;
+	
 
 	public CinemaProjection() {
 
@@ -106,5 +111,15 @@ public class CinemaProjection implements Serializable {
 	public void setActors(String actors) {
 		this.actors = actors;
 	}
+	 @JsonIgnore
+	public CinemaRepertoar getCrepertoar() {
+		return crepertoar;
+	}
+
+	public void setCrepertoar(CinemaRepertoar crepertoar) {
+		this.crepertoar = crepertoar;
+	}
+
+	
 
 }
