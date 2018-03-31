@@ -1,6 +1,7 @@
 package com.ISA.ISA_Project.controller.UserContoller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.service.UserService;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 @RequestMapping("/user")
 public class UserController {
 
