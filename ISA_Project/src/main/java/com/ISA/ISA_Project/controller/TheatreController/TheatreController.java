@@ -3,6 +3,7 @@ package com.ISA.ISA_Project.controller.TheatreController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +18,11 @@ import com.ISA.ISA_Project.domain.Theatre;
 import com.ISA.ISA_Project.repository.TheatreRepository;
 import com.ISA.ISA_Project.response.TheatreResponse;
 import com.ISA.ISA_Project.service.TheatreService;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @RestController
 @RequestMapping("/theatres")
-
+@CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 public class TheatreController {
 
 	
@@ -31,7 +33,7 @@ public class TheatreController {
 	@Autowired 
 	private TheatreService theatreService;
 	
-	
+	@JsonValue
 	@GetMapping("/getTheatres")
 	public TheatreResponse getTheatres(){
 		

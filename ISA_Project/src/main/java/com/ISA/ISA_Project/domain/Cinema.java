@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cinema implements Serializable {
 
@@ -22,11 +24,11 @@ public class Cinema implements Serializable {
 	private String location;
 	
 	private String promOpis;
-
+/*
 	@OneToOne(mappedBy = "cinema")
 	private CinemaRepertoar repertoar;
 	
-	
+	*/
 
 	public Cinema(){
 		
@@ -66,7 +68,8 @@ public class Cinema implements Serializable {
 	public void setPromOpis(String promOpis) {
 		this.promOpis = promOpis;
 	}
-
+	/*
+  @JsonIgnore
 	public CinemaRepertoar getRepertoar() {
 		return repertoar;
 	}
@@ -76,7 +79,7 @@ public class Cinema implements Serializable {
 	}
 
 	
-	
+	*/
 	
 	
 	

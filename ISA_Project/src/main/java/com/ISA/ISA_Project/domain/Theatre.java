@@ -20,7 +20,7 @@ public class Theatre implements Serializable{
 	private String location;
 	//private List<Projection>repertoar;
 	private String promOpis;
-	
+	/*
 	@OneToMany
 	@JoinColumn(name = "theatreprojection_id")
 	private Set<TheatreProjection> repertoar;
@@ -28,7 +28,7 @@ public class Theatre implements Serializable{
 	@OneToMany(mappedBy = "theatre")
 	private Set<TheatreHall> halls;
 	
-	
+	*/
 	public Theatre(){
 		
 		
@@ -67,7 +67,7 @@ public class Theatre implements Serializable{
 	public void setPromOpis(String promOpis) {
 		this.promOpis = promOpis;
 	}
-
+/*
 	public Set<TheatreProjection> getRepertoar() {
 		return repertoar;
 	}
@@ -83,6 +83,6 @@ public class Theatre implements Serializable{
 	public void setHalls(Set<TheatreHall> halls) {
 		this.halls = halls;
 	}
-	
+	*/
 	
 }

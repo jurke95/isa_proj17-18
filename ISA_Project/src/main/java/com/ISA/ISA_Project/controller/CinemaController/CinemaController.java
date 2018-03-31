@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +22,11 @@ import com.ISA.ISA_Project.response.CinemaRepertoarResponse;
 import com.ISA.ISA_Project.response.CinemaResponse;
 import com.ISA.ISA_Project.service.CinemaProjectionService;
 import com.ISA.ISA_Project.service.CinemaService;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 @RestController
 @RequestMapping("/cinemas")
+@CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 public class CinemaController {
 
 	
@@ -35,7 +38,8 @@ public class CinemaController {
     
     @Autowired 
     private CinemaProjectionService cinemaProjectionService;
-	
+    
+    @JsonValue
 	@GetMapping("/getCinemas")
 	public CinemaResponse getCinemas(){
 		
@@ -46,6 +50,7 @@ public class CinemaController {
 	
 	
 	@GetMapping("getCinemas/{id}")
+	@JsonValue
 	public Cinema getCinema(@PathVariable("id")Long id){
 		
 		Cinema cinema=cinemaService.getCinema(id);
