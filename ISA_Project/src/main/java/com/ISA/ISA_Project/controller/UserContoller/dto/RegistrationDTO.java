@@ -1,5 +1,8 @@
 package com.ISA.ISA_Project.controller.UserContoller.dto;
 
+
+
+
 public class RegistrationDTO {
 
     private String password1;
@@ -7,7 +10,7 @@ public class RegistrationDTO {
     private String email;
     private String name;
     private String surname;
-    private String phoneNumber;
+    private String phonenumber;
     private String city;
 
 
@@ -57,11 +60,11 @@ public class RegistrationDTO {
 	}
 
 	public String getPhoneNumber() {
-		return phoneNumber;
+		return phonenumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+		this.phonenumber = phoneNumber;
 	}
 
 	public String getCity() {

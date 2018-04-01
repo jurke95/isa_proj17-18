@@ -13,6 +13,13 @@ import com.ISA.ISA_Project.controller.UserContoller.dto.RegistrationDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.service.UserService;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
@@ -22,14 +29,27 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	private final Logger log = LoggerFactory.getLogger(UserController.class);
+	
 	
 
 	// @RequestMapping(value ="/registration",method= RequestMethod.POST)
+	
+	
+	
+	/**
+	 * POST /registration : Registrate user
+	 *
+	 * @param registrationDTO
+	 *            object providing information required for registration
+	 * @return
+	 */
+	@Transactional
 	@PostMapping("/registration")
-	public MessageResponseDTO registration(@RequestBody RegistrationDTO registrationDTO) {
-
+	public MessageResponseDTO registration(@Valid @RequestBody RegistrationDTO registrationDTO) {
+		log.debug("REST request to registrate user: {}", registrationDTO);
 		User user = new User();
-
+       System.out.println("pozvan");
 		if (!(userService.checkUniqueEmail(registrationDTO.getEmail()))) {
 			return new MessageResponseDTO("This email already exists");
 		}
