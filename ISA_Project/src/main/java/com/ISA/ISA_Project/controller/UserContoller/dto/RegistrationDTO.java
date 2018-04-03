@@ -59,13 +59,7 @@ public class RegistrationDTO {
 		this.surname = surname;
 	}
 
-	public String getPhoneNumber() {
-		return phonenumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phonenumber = phoneNumber;
-	}
+	
 
 	public String getCity() {
 		return city;
@@ -73,6 +67,16 @@ public class RegistrationDTO {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
     
 }

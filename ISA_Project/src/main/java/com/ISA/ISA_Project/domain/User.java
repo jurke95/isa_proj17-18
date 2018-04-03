@@ -94,13 +94,7 @@ public class User implements Serializable {
 		this.city = city;
 	}
 
-	public String getPhonenumber() {
-		return phonenumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phonenumber = phoneNumber;
-	}
+	
 
 	public String getConfirmationToken() {
 		return confirmationtoken;
@@ -108,6 +102,22 @@ public class User implements Serializable {
 
 	public void setConfirmationToken(String confirmationToken) {
 		this.confirmationtoken = confirmationToken;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getConfirmationtoken() {
+		return confirmationtoken;
+	}
+
+	public void setConfirmationtoken(String confirmationtoken) {
+		this.confirmationtoken = confirmationtoken;
 	}
     
 	

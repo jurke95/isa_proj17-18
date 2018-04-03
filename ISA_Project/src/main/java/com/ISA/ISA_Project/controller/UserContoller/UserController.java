@@ -22,8 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 @RequestMapping("/user")
+@CrossOrigin(origins="http://localhost:4200",allowedHeaders="*")
 public class UserController {
 
 	@Autowired
@@ -44,12 +44,13 @@ public class UserController {
 	 *            object providing information required for registration
 	 * @return
 	 */
-	@Transactional
+	
 	@PostMapping("/registration")
-	public MessageResponseDTO registration(@Valid @RequestBody RegistrationDTO registrationDTO) {
-		log.debug("REST request to registrate user: {}", registrationDTO);
+	public MessageResponseDTO registration(@RequestBody RegistrationDTO registrationDTO) {
+		System.out.println("pozvan");
+		
 		User user = new User();
-       System.out.println("pozvan");
+       
 		if (!(userService.checkUniqueEmail(registrationDTO.getEmail()))) {
 			return new MessageResponseDTO("This email already exists");
 		}
@@ -61,7 +62,8 @@ public class UserController {
 		user.setName(registrationDTO.getName());
 		user.setSurname(registrationDTO.getSurname());
 		user.setCity(registrationDTO.getCity());
-		user.setPhoneNumber(registrationDTO.getPhoneNumber());
+		user.setPhonenumber(registrationDTO.getPhonenumber());
+		System.out.println(registrationDTO.getPhonenumber());
 
 		User temp = userService.registrateUser(user);
 
@@ -105,7 +107,7 @@ public class UserController {
 		user.setName(registrationDTO.getName());
 		user.setSurname(registrationDTO.getSurname());
 		user.setCity(registrationDTO.getCity());
-		user.setPhoneNumber(registrationDTO.getPhoneNumber());
+		user.setPhonenumber(registrationDTO.getPhonenumber());
 
 		// if Activation on the email is accepted
 
