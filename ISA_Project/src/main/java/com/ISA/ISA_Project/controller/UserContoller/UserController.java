@@ -1,7 +1,13 @@
 package com.ISA.ISA_Project.controller.UserContoller;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +18,9 @@ import com.ISA.ISA_Project.controller.UserContoller.dto.LoginDTO;
 import com.ISA.ISA_Project.controller.UserContoller.dto.RegistrationDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.User;
+import com.ISA.ISA_Project.response.UserResponse;
 import com.ISA.ISA_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonValue;
-
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/user")
@@ -130,5 +131,18 @@ public class UserController {
 		user.setActive(true);
 		userService.saveUser(user);
 	return new MessageResponseDTO("User is activated");
+	}
+	@GetMapping("/getUser/{id}")
+	public User getUser(@PathVariable("id")Long id){
+		System.out.println("pozvan get user");
+		User user=userService.findOneUserById(id);
+		return user;		
+	}
+	
+	@JsonValue
+	@GetMapping("/getUsers")
+	public UserResponse getUsers(){
+		List<User>listUsers=userService.findAllUsers();
+		return new UserResponse(listUsers);	
 	}
 }
