@@ -24,6 +24,8 @@ public class Product implements Serializable {
 	
 	private String image;
 	
+	private int price;
+	
 	private String boxoffice;
 	
 	@ManyToOne
@@ -77,6 +79,14 @@ public class Product implements Serializable {
 
 	public void setBuyer(User buyer) {
 		this.buyer = buyer;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	

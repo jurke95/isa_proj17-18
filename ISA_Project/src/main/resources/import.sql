@@ -11,9 +11,9 @@ INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`,`user_id`) 
 INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`,`user_id`) VALUES ('2', 'cipele', 'prodajemCipele',NULL, 'slikapatika', '1');
 INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`,`user_id`) VALUES ('3', 'kisobran', 'prodajemKisobran',NULL, 'slikapatika', '2');
 INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`,`user_id`) VALUES ('4', 'casa', 'prodajemCasu',NULL, 'slikapatika', '3');
-INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`, `boxoffice`) VALUES ('1', 'dzemper', 'plaviDzemper','slikadzempera','srpskonarodno');
-INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`, `boxoffice`) VALUES ('2', 'olovka', 'opisolovka','slikaolovka','p.mladih');
-INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`, `boxoffice`) VALUES ('3', 'bicikl', 'biciklopis','slikbicikl','cair');
+INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxoffice`) VALUES ('1', 'dzemper', 'plaviDzemper','slikadzempera','100','srpskonarodno');
+INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxoffice`) VALUES ('2', 'olovka', 'opisolovka','slikaolovka','200','p.mladih');
+INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxoffice`) VALUES ('3', 'bicikl', 'biciklopis','slikbicikl','300','cair');
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('1', '100','2','3');
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('2', '50','2','1');
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('3', '60','2','2');

@@ -63,9 +63,11 @@ public class CinemaController {
 	
 	
 	@PostMapping("/registration")
+	@JsonValue
 	public MessageResponseDTO registrationCin(@RequestBody CinemaDTO cinemaDTO){
+		System.out.println("usao u post");
 		Cinema c=new Cinema();
-		c.setId(cinemaDTO.getId());
+		c.setId(cinemaDTO.getId()); 
 		c.setName(cinemaDTO.getName());
 		c.setLocation(cinemaDTO.getLocation());
 		
