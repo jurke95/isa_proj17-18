@@ -3,6 +3,7 @@ package com.ISA.ISA_Project.controller.FanZoneController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import com.ISA.ISA_Project.repository.FanZoneRepository;
 import com.ISA.ISA_Project.response.AdResponse;
 import com.ISA.ISA_Project.response.ProductResponse;
 import com.ISA.ISA_Project.service.AdService;
+import com.ISA.ISA_Project.service.EmailService;
 import com.ISA.ISA_Project.service.OfferService;
 import com.ISA.ISA_Project.service.ProductService;
 import com.ISA.ISA_Project.service.ReservationService;
@@ -51,6 +53,9 @@ public class FanZoneController {
 
 	@Autowired
 	private OfferService offerService;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@GetMapping("/getProducts")
 	public ProductResponse getProducts() {
@@ -193,9 +198,9 @@ public class FanZoneController {
 
 	@PostMapping("/reservationProduct")
 	public MessageResponseDTO reservationProduct(@RequestParam("userId") String userId,
-			@RequestParam("productId") String productId,
-			@RequestParam(value = "checkboxName", required = false) String checkboxValue) {
-
+			@RequestParam("productId") String productId /*,
+			@RequestParam(value = "checkboxName", required = false) String checkboxValue*/) {
+/*
 		if (checkboxValue != null) {
 			// System.out.println("checkbox is checked");
 		} else {
@@ -205,12 +210,25 @@ public class FanZoneController {
 		// slucaju da je vec prethodno rezervisan) u back-endu
 		// vec cemo tu zabranu odraditi na u front -endu jednostavno cemo posle
 		// rezervacije onemoguciti dalji klik na dugme rezervisi za taj rekvizit
-
+*/
 		Long prod = Long.parseLong(productId);
 		Long u = Long.parseLong(userId);
+		
 		productService.getProduct(prod).setBuyer(userService.findOneUserById(u));
 
 		productService.saveProduct(productService.getProduct(prod));
+		User customer=userService.findOneUserById(u);
+		
+		SimpleMailMessage registrationEmail=new SimpleMailMessage();
+		registrationEmail.setTo(customer.getEmail());
+		registrationEmail.setSubject("Product reservation mail");
+		registrationEmail.setText("You have successfully reserved the product below:\n"
+		+"Product name  "+productService.getProduct(prod).getName()
+		+"Product description  "+productService.getProduct(prod).getDescription()
+		+"Product price  "+productService.getProduct(prod).getPrice()
+		+"Product location  "+productService.getProduct(prod).getBoxoffice());
+		
+		emailService.sendEmail(registrationEmail);
 
 		return new MessageResponseDTO("successfully booked");
 	}

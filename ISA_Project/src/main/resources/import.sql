@@ -4,6 +4,7 @@ INSERT INTO `peca`.`cinema` (`id`, `location`, `name`) VALUES ('3', 'Nis', 'Cair
 INSERT INTO peca.user (id,email, role, password,name, surname,city,phonenumber, active, confirmationToken) VALUES (1,"jurke@gmail.com","admin", "si","d","n","ns","broj",1, "43");
 INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('2','nicic@gmail.com', 'admin', 'si','m','j','ns','broj', 0, '34');
 INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('3','stefan@gmail.com', 'admin', 'si','s','s','ns','broj',1, '45');
+INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('4','markivicius@hotmail.com', 'admin', 'nbu','wvwe','svg','ns','broj',1, '459');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('1', 'Novi Sad', 'SNP');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('2', 'Beograd', 'P.Mladih');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('3', 'Nis', 'pozoristeNis');
