@@ -94,6 +94,7 @@ public class FanZoneController {
 		p.setDescription(productDTO.getDescription());
 		p.setImage(productDTO.getImage());
 		p.setBoxoffice(productDTO.getBoxoffice());
+		p.setPrice(productDTO.getPrice());
 
 		Product temp = productService.saveProduct(p);
 

@@ -7,8 +7,9 @@ public class ProductDTO {
 	private String name;
 	private String description;
 	private String image;
+	private Integer price;
 	private String boxoffice;
-	private Long iduser;
+	
 	
 	
 	public ProductDTO(){
@@ -67,14 +68,17 @@ public class ProductDTO {
 	}
 
 
-	public Long getIduser() {
-		return iduser;
+	public Integer getPrice() {
+		return price;
 	}
 
 
-	public void setIduser(Long iduser) {
-		this.iduser = iduser;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
+
+
+	
 	
 	
 	
