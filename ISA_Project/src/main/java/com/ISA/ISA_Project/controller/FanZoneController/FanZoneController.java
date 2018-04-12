@@ -91,10 +91,11 @@ public class FanZoneController {
 	public MessageResponseDTO addProduct(@RequestBody ProductDTO productDTO) {
 
 		Product p = new Product();
+		/*
 		if (!(productService.checkUniqueProduct(productDTO.getId()))) {
 			return new MessageResponseDTO("This product already exists");
 		}
-
+        */
 		p.setName(productDTO.getName());
 		p.setDescription(productDTO.getDescription());
 		p.setImage(productDTO.getImage());
@@ -113,10 +114,11 @@ public class FanZoneController {
 	public MessageResponseDTO addAd(@RequestBody AdDTO adDTO, @RequestParam("userId") String userId) {
 
 		Ad a = new Ad();
+		/*
 		if (!(adService.checkUniqueAd(adDTO.getId()))) {
 			return new MessageResponseDTO("This ad already exists");
 		}
-
+*/
 		Long u = Long.parseLong(userId);
 		a.setAdMaker(userService.findOneUserById(u));
 		a.setName(adDTO.getName());
@@ -138,11 +140,11 @@ public class FanZoneController {
 	public MessageResponseDTO editProduct(@RequestBody ProductDTO productDTO, @PathVariable("id") Long id) {
 
 		Product p = new Product();
-
+/*
 		if ((productService.checkUniqueProduct(productDTO.getId()))) {
 			return new MessageResponseDTO("You cannot edit non-existing product");
 		}
-
+*/
 		p.setId(id);
 		p.setName(productDTO.getName());
 		p.setDescription(productDTO.getDescription());
@@ -162,10 +164,11 @@ public class FanZoneController {
 
 		Ad a = new Ad();
 
+		/*
 		if ((adService.checkUniqueAd(adDTO.getId()))) {
 			return new MessageResponseDTO("You cannot edit non-existing ad");
 		}
-
+*/
 		a.setId(id);
 		a.setName(adDTO.getName());
 		a.setDescription(adDTO.getDescription());
@@ -182,7 +185,7 @@ public class FanZoneController {
 
 	@DeleteMapping("/deleteProducts/{id}")
 	public MessageResponseDTO deleteProducts(@PathVariable("id") Long id) {
-     System.out.println("USAO U DELETE U BACK");
+    
 		productService.deleteProduct(id);
 
 		return new MessageResponseDTO("Successfully deleted product");
@@ -223,10 +226,10 @@ public class FanZoneController {
 		registrationEmail.setTo(customer.getEmail());
 		registrationEmail.setSubject("Product reservation mail");
 		registrationEmail.setText("You have successfully reserved the product below:\n"
-		+"Product name  "+productService.getProduct(prod).getName()
-		+"Product description  "+productService.getProduct(prod).getDescription()
-		+"Product price  "+productService.getProduct(prod).getPrice()
-		+"Product location  "+productService.getProduct(prod).getBoxoffice());
+		+"Product name  "+productService.getProduct(prod).getName()+"\n"
+		+"Product description  "+productService.getProduct(prod).getDescription()+"\n"
+		+"Product price  "+productService.getProduct(prod).getPrice()+"\n"
+		+"Product location  "+productService.getProduct(prod).getBoxoffice()+"\n");
 		
 		emailService.sendEmail(registrationEmail);
 
