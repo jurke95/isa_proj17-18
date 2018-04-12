@@ -177,7 +177,7 @@ public class FanZoneController {
 
 	@DeleteMapping("/deleteProducts/{id}")
 	public MessageResponseDTO deleteProducts(@PathVariable("id") Long id) {
-
+     System.out.println("USAO U DELETE U BACK");
 		productService.deleteProduct(id);
 
 		return new MessageResponseDTO("Successfully deleted product");
