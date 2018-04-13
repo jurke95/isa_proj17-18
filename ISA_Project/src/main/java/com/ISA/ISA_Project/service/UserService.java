@@ -31,6 +31,8 @@ public class UserService {
 	
 	@Autowired
 	private JavaMailSender sender;
+	
+	public static User activeUser;
 
 	public User registrateUser(User user) {
 		user.setRole("USER");

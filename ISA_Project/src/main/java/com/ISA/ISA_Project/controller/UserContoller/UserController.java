@@ -46,6 +46,22 @@ public class UserController {
 	 * @return
 	 */
 	
+	
+	
+	
+	@PostMapping("/setActiveUser/{userId}")
+    public  MessageResponseDTO setActiveUser(@PathVariable Long userId){
+        User activeUser = userService.findOneUserById(userId);
+        UserService.activeUser = activeUser;
+        return new MessageResponseDTO("User is now active!");
+    }
+
+    @GetMapping("/getActiveUser")
+    public User getActiveUser(){
+    	User activeUser = UserService.activeUser;
+        return activeUser;
+    }
+	
 	@PostMapping("/registration")
 	public MessageResponseDTO registration(@RequestBody RegistrationDTO registrationDTO) {
 		System.out.println("pozvan");
@@ -85,6 +101,8 @@ public class UserController {
 			return new MessageResponseDTO("Invalid password");
 		if (!(temp.isActive()))
 			return new MessageResponseDTO("User is not active");
+		
+		UserService.activeUser = temp;
 
 		return new MessageResponseDTO("Login success");
 	}
