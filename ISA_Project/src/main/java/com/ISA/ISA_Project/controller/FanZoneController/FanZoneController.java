@@ -248,6 +248,7 @@ public class FanZoneController {
 	@PostMapping("/makeOffer/{id}")
 	public MessageResponseDTO makeOffer(@PathVariable("id") Long id, @RequestParam("userId") String userId,
 			@RequestParam("offer") String offer) {
+		System.out.println("usao u back");
 		Long o = Long.parseLong(offer); // Koliko nudi para
 		Long u = Long.parseLong(userId); // Ko nudi
 
