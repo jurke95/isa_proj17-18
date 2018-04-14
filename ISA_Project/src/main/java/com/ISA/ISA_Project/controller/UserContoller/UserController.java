@@ -46,7 +46,12 @@ public class UserController {
 	 * @return
 	 */
 	
-	
+	@GetMapping("/deleteActiveUser")
+    public  MessageResponseDTO deleteActiveUser(){
+        System.out.println("usao");
+        UserService.activeUser = null;
+        return new MessageResponseDTO("There is no active users!");
+    }
 	
 	
 	@PostMapping("/setActiveUser/{userId}")
