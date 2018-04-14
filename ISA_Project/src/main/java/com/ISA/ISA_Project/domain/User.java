@@ -25,6 +25,8 @@ public class User implements Serializable {
     private String phonenumber;   
     private boolean active;
     private String confirmationtoken;
+    private Long points;
+    
 
     public User(){
     
