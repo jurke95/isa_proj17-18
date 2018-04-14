@@ -112,7 +112,7 @@ public class FanZoneController {
 
 	@PostMapping("/addAd")
 	public MessageResponseDTO addAd(@RequestBody AdDTO adDTO, @RequestParam("userId") String userId) {
-
+       System.out.println(adDTO.getDate());
 		Ad a = new Ad();
 		/*
 		if (!(adService.checkUniqueAd(adDTO.getId()))) {

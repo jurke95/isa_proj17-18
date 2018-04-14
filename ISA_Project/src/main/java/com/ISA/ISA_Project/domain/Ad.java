@@ -25,7 +25,7 @@ public class Ad implements Serializable {
 
 	private String description;
 
-	@DateTimeFormat(pattern = "dd/mm/yyyy")
+	@DateTimeFormat(pattern = " YYYY-MM-DD")
 	private Date date;
 
 	private String image;
