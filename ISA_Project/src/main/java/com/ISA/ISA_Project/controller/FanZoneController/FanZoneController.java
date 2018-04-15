@@ -105,9 +105,9 @@ public class FanZoneController {
 		Product temp = productService.saveProduct(p);
 
 		if (temp == null)
-			return new MessageResponseDTO("Cannot add product");
+			return new MessageResponseDTO("Cannot add product,check out input parameters!");
 
-		return new MessageResponseDTO("Successfully added product");
+		return new MessageResponseDTO("Successfully added product!");
 	}
 
 	@PostMapping("/addAd")
@@ -131,9 +131,9 @@ public class FanZoneController {
 		Ad temp = adService.saveAd(a);
 
 		if (temp == null)
-			return new MessageResponseDTO("Cannot add ad");
+			return new MessageResponseDTO("Cannot add ad, check out input parameters!");
 
-		return new MessageResponseDTO("Successfully added ad");
+		return new MessageResponseDTO("Successfully added ad!");
 	}
 
 	@PostMapping("/editProduct/{id}")
@@ -155,9 +155,9 @@ public class FanZoneController {
 		Product temp = productService.saveProduct(p);
 
 		if (temp == null)
-			return new MessageResponseDTO("Cannot edit product");
+			return new MessageResponseDTO("Cannot edit product,check out input parameters!");
 
-		return new MessageResponseDTO("Successfully edited product");
+		return new MessageResponseDTO("Successfully edited product!");
 	}
 
 	@PostMapping("/editAd/{id}")
@@ -179,9 +179,9 @@ public class FanZoneController {
 		Ad temp = adService.saveAd(a);
 
 		if (temp == null)
-			return new MessageResponseDTO("Cannot edit ad");
+			return new MessageResponseDTO("Cannot edit ad,check out input parameters!");
 
-		return new MessageResponseDTO("Successfully edited ad");
+		return new MessageResponseDTO("Successfully edited ad!");
 	}
 
 	@DeleteMapping("/deleteProducts/{id}")
@@ -234,7 +234,7 @@ public class FanZoneController {
 		
 		emailService.sendEmail(registrationEmail);
 
-		return new MessageResponseDTO("successfully booked");
+		return new MessageResponseDTO("Successfully reservation! Check out your e-mail for details!");
 	}
 
 	@DeleteMapping("/deleteReservation/{id}")
@@ -260,7 +260,7 @@ public class FanZoneController {
 
 		offerService.saveOffer(offer_new);
 
-		return new MessageResponseDTO("Successfully offer");
+		return new MessageResponseDTO("Successfully made offer for selected ad!");
 
 	}
 
