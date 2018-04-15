@@ -25,7 +25,7 @@ public class User implements Serializable {
     private String phonenumber;   
     private boolean active;
     private String confirmationtoken;
-    private Long points;
+    //private int points;
     
 
     public User(){
@@ -121,7 +121,15 @@ public class User implements Serializable {
 	public void setConfirmationtoken(String confirmationtoken) {
 		this.confirmationtoken = confirmationtoken;
 	}
-    
+/*
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+    */
 	
     
 }

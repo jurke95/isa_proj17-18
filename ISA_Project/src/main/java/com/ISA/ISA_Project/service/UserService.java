@@ -38,7 +38,7 @@ public class UserService {
 		user.setRole("USER");
 		user.setActive(false);
 		user.setConfirmationToken(UUID.randomUUID().toString());
-		user.setPoints((long) 0);
+		//user.setPoints(0);
 		user = userRepository.save(user);
 		String appUrl = "http://localhost:8084";//request.getScheme() + "://" + request.getServerName();
 		SimpleMailMessage registrationEmail=new SimpleMailMessage();
