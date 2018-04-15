@@ -125,6 +125,7 @@ public class FanZoneController {
 		a.setDescription(adDTO.getDescription());
 		a.setImage(adDTO.getImage());
 		a.setDate(adDTO.getDate());
+		a.setAccepted(false);
 
 		// fali deo za slanje oglasa na odobrenje Administratoru
 		// takodje deo za ponude PONUDJIVAC-OGLAS (many-to-many relationship)
@@ -283,6 +284,15 @@ public class FanZoneController {
 		offerService.saveOffer(offer);
 
 		return new MessageResponseDTO("Successfully changed the offer");
+	}
+	
+	@PostMapping("/acceptAd/{id}")
+	public MessageResponseDTO acceptAd(@PathVariable("id") Long id){
+		
+		Ad ad=adService.getAd(id);
+		ad.setAccepted(true);
+		adService.saveAd(ad);
+		return new MessageResponseDTO("Successfully accepted ad");
 	}
 
 	@GetMapping("/getOffer/{id}")

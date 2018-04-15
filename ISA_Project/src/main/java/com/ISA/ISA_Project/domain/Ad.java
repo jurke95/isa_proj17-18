@@ -29,6 +29,8 @@ public class Ad implements Serializable {
 	private Date date;
 
 	private String image;
+	
+	private boolean accepted;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -90,4 +92,15 @@ public class Ad implements Serializable {
 		this.admaker = adMaker;
 	}
 
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
+	}
+
+	
+	
+	
 }
