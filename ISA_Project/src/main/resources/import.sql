@@ -8,9 +8,9 @@ INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('1', 'Novi Sad', 'SNP');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('2', 'Beograd', 'P.Mladih');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('3', 'Nis', 'pozoristeNis');
-INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`, `accepted`,`user_id`) VALUES ('1', 'patike', 'prodajemPatike',NULL, 'slikapatika',1, '1');
+INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`, `accepted`,`user_id`) VALUES ('1', 'patike', 'prodajemPatike',NULL, 'slikapatika',0, '1');
 INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`, `accepted`,`user_id`) VALUES ('2', 'cipele', 'prodajemCipele',NULL, 'slikapatika',1, '1');
-INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`, `accepted`,`user_id`) VALUES ('3', 'kisobran', 'prodajemKisobran',NULL, 'slikapatika',1, '2');
+INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`, `accepted`,`user_id`) VALUES ('3', 'kisobran', 'prodajemKisobran',NULL, 'slikapatika',0, '2');
 INSERT INTO `peca`.`ad` (`id`, `name`, `description`,`date`, `image`, `accepted`,`user_id`) VALUES ('4', 'casa', 'prodajemCasu',NULL, 'slikapatika',1, '3');
 INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxoffice`) VALUES ('1', 'dzemper', 'plaviDzemper','slikadzempera','100','srpskonarodno');
 INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxoffice`) VALUES ('2', 'olovka', 'opisolovka','slikaolovka','200','p.mladih');

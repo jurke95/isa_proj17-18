@@ -294,6 +294,19 @@ public class FanZoneController {
 		adService.saveAd(ad);
 		return new MessageResponseDTO("Successfully accepted ad");
 	}
+	
+	@PostMapping("/editBid/{id}")
+	public MessageResponseDTO editBid(@PathVariable("id") Long id, @RequestParam("bid") Long bid){
+		Long idUser = userService.activeUser.getId();
+		Ad ad=adService.getAd(id);
+		List<Offer> offerList=offerService.getAllOffersByAd(ad);
+		for(Offer temp : offerList) {
+			if(temp.getBidder().getId()==idUser) {
+				temp.setBid(bid);
+			}
+		}
+		return new MessageResponseDTO("Successfully edited bid");
+	}
 
 	@GetMapping("/getOffer/{id}")
 	public Offer getOffer(@PathVariable("id") Long id) {
