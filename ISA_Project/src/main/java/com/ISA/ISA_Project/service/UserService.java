@@ -40,12 +40,12 @@ public class UserService {
 		user.setConfirmationToken(UUID.randomUUID().toString());
 		//user.setPoints(0);
 		user = userRepository.save(user);
-		String appUrl = "http://localhost:8084";//request.getScheme() + "://" + request.getServerName();
+		String appUrl = "http://localhost:4200/confirmEmail/";//request.getScheme() + "://" + request.getServerName();
 		SimpleMailMessage registrationEmail=new SimpleMailMessage();
 		registrationEmail.setTo(user.getEmail());
 		registrationEmail.setSubject("Registration Confirmation");
 		registrationEmail.setText("To confirm your e-mail address, please click the link below:\n"
-		+appUrl+"/user/confirm?token="+ user.getConfirmationToken());
+		+appUrl+ user.getConfirmationToken());
 		emailService.sendEmail(registrationEmail);
 		
 		
