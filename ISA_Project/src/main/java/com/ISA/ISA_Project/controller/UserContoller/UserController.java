@@ -114,16 +114,18 @@ public class UserController {
 
 	@PostMapping("/edituser")
 	public MessageResponseDTO edituser(@RequestBody RegistrationDTO registrationDTO) {
-
+		System.out.println("pozvan edit");
+		Boolean changeEmail=false;
 		User user = new User();
 		// user= getsesion....
-		// if(!(registrationDTO.getEmail().equals(getSession.getEmail()))){
+	    if(!(registrationDTO.getEmail().equals(userService.activeUser.getEmail()))){
 		if (!(userService.checkUniqueEmail(registrationDTO.getEmail()))) {
 			return new MessageResponseDTO("This email already exists");
 		} else {
 			user.setEmail(registrationDTO.getEmail()); // Must make a activate link for email
-		}
-
+			changeEmail=true;
+		}}
+	    if(userService.activeUser.getRole()=="ADMIN_FANZONE")
 		if (registrationDTO.getPassword1().equals((registrationDTO.getPassword2())))
 			user.setPassword(registrationDTO.getPassword1());
 		else
@@ -134,14 +136,14 @@ public class UserController {
 		user.setPhonenumber(registrationDTO.getPhonenumber());
 
 		// if Activation on the email is accepted
-
+		if(changeEmail) {
 		User temp = userService.registrateUser(user);
 
 		if (temp == null) {
-			return new MessageResponseDTO("User is not registrated");
-		}
+			return new MessageResponseDTO("User is edited with a new email");
+		}}
 
-		return new MessageResponseDTO("User is registrated");
+		return new MessageResponseDTO("User is edited");
 	}
 	@PostMapping("/confirm")
 	public MessageResponseDTO emailConfirm(@RequestParam("token") String token) {
