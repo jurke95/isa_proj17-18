@@ -53,4 +53,15 @@ public class OfferService {
 		
 		return offerRepository.findOneById(id);
 	}
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
 }
