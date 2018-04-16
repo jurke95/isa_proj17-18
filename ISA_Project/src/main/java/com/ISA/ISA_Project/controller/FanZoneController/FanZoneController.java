@@ -261,10 +261,25 @@ public class FanZoneController {
 	@PostMapping("/makeOffer/{id}")
 	public MessageResponseDTO makeOffer(@PathVariable("id") Long id, @RequestParam("userId") String userId,
 			@RequestParam("offer") String offer) {
-		System.out.println("usao u back");
+		 boolean imaponude=false;
+		
 		Long o = Long.parseLong(offer); // Koliko nudi para
 		Long u = Long.parseLong(userId); // Ko nudi
 
+		List<Offer>offersforad=offerService.getAllOffersByAd(adService.getAd(id));
+		
+		for(int i=0;i<offersforad.size();i++){
+			
+			if(offersforad.get(i).getBidder().getId()==u){
+				imaponude=true;
+				Offer foredit=offersforad.get(i);
+				foredit.setBid(o);
+				offerService.saveOffer(foredit);
+			}
+				
+		}
+		
+		if(imaponude==false){
 		User bidder = userService.findOneUserById(u);
 		Offer offer_new = new Offer();
 		offer_new.setBidder(bidder);
@@ -272,6 +287,17 @@ public class FanZoneController {
 		offer_new.setAd(adService.getAd(id));
 
 		offerService.saveOffer(offer_new);
+		}
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		
 
 		return new MessageResponseDTO("Successfully made offer for selected ad!");
 
