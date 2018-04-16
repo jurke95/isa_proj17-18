@@ -120,7 +120,7 @@ public class FanZoneController {
 		}
 */
 		Long u = Long.parseLong(userId);
-		a.setAdMaker(userService.findOneUserById(u));
+		a.setAdmaker(userService.findOneUserById(u));
 		a.setName(adDTO.getName());
 		a.setDescription(adDTO.getDescription());
 		a.setImage(adDTO.getImage());
@@ -283,7 +283,7 @@ public class FanZoneController {
 		Long u = Long.parseLong(userId); // Ko je poslao tu ponudu
 		User winner = userService.findOneUserById(u);
 		Ad ad = adService.getAd(id);
-		User user = ad.getAdMaker();
+		User user = ad.getAdmaker();
 		userService.aceptTheOffer(user, winner, ad);
 		return new MessageResponseDTO("Successfully send mail for offer");
 	}

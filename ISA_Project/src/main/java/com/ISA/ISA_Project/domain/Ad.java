@@ -84,12 +84,14 @@ public class Ad implements Serializable {
 		this.image = image;
 	}
 
-	public User getAdMaker() {
+	
+
+	public User getAdmaker() {
 		return admaker;
 	}
 
-	public void setAdMaker(User adMaker) {
-		this.admaker = adMaker;
+	public void setAdmaker(User admaker) {
+		this.admaker = admaker;
 	}
 
 	public boolean isAccepted() {

@@ -122,27 +122,28 @@ public class UserController {
 		if (!(userService.checkUniqueEmail(registrationDTO.getEmail()))) {
 			return new MessageResponseDTO("This email already exists");
 		} else {
-			user.setEmail(registrationDTO.getEmail()); // Must make a activate link for email
+			 userService.activeUser.setEmail(registrationDTO.getEmail()); // Must make a activate link for email
 			changeEmail=true;
 		}}
 	    if(userService.activeUser.getRole()=="ADMIN_FANZONE")
 		if (registrationDTO.getPassword1().equals((registrationDTO.getPassword2())))
-			user.setPassword(registrationDTO.getPassword1());
+			 userService.activeUser.setPassword(registrationDTO.getPassword1());
 		else
 			return new MessageResponseDTO("password1 and password2 are not equal");
-		user.setName(registrationDTO.getName());
-		user.setSurname(registrationDTO.getSurname());
-		user.setCity(registrationDTO.getCity());
-		user.setPhonenumber(registrationDTO.getPhonenumber());
+	    userService.activeUser.setName(registrationDTO.getName());
+	    userService.activeUser.setSurname(registrationDTO.getSurname());
+	    userService.activeUser.setCity(registrationDTO.getCity());
+	    userService.activeUser.setPhonenumber(registrationDTO.getPhonenumber());
 
 		// if Activation on the email is accepted
+		
 		if(changeEmail) {
-		User temp = userService.registrateUser(user);
+		User temp = userService.registrateUser(userService.activeUser);
 
 		if (temp == null) {
 			return new MessageResponseDTO("User is edited with a new email");
 		}}
-
+		userService.saveUser(userService.activeUser);
 		return new MessageResponseDTO("User is edited");
 	}
 	@PostMapping("/confirm")
