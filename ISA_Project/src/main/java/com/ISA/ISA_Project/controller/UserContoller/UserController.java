@@ -125,11 +125,12 @@ public class UserController {
 			 userService.activeUser.setEmail(registrationDTO.getEmail()); // Must make a activate link for email
 			changeEmail=true;
 		}}
-	    if(userService.activeUser.getRole()=="ADMIN_FANZONE")
+	    if(userService.activeUser.getRole()!="USER") {
 		if (registrationDTO.getPassword1().equals((registrationDTO.getPassword2())))
 			 userService.activeUser.setPassword(registrationDTO.getPassword1());
 		else
 			return new MessageResponseDTO("password1 and password2 are not equal");
+	    }
 	    userService.activeUser.setName(registrationDTO.getName());
 	    userService.activeUser.setSurname(registrationDTO.getSurname());
 	    userService.activeUser.setCity(registrationDTO.getCity());
