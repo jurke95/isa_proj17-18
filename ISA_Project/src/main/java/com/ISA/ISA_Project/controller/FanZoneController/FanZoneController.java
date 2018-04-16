@@ -195,7 +195,19 @@ public class FanZoneController {
 
 	@DeleteMapping("/deleteAds/{id}")
 	public MessageResponseDTO deleteAds(@PathVariable("id") Long id) {
+		
+		List<Offer>listOffers =offerService.getAllOffersByAd(adService.getAd(id));
 
+		int x=offerService.getAllOffersByAd(adService.getAd(id)).size();
+		if (x!=0){
+			
+			for(int i=0;i<x;i++){
+				offerService.deleteOffer(listOffers.get(i).getId());
+				
+			}
+		}
+		
+		
 		adService.deleteAd(id);
 
 		return new MessageResponseDTO("Successfully deleted ad");
