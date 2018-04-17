@@ -2,9 +2,9 @@ INSERT INTO `peca`.`cinema` (`id`, `location`, `name`) VALUES ('1', 'Novi Sad', 
 INSERT INTO `peca`.`cinema` (`id`, `location`, `name`) VALUES ('2', 'Beograd', 'Zvezdara');
 INSERT INTO `peca`.`cinema` (`id`, `location`, `name`) VALUES ('3', 'Nis', 'Cair');
 INSERT INTO peca.user (id,email, role, password,name, surname,city,phonenumber, active, confirmationToken) VALUES (1,"markivicius@hotmail.com","USER", "123","Marko","Juric","Novi Sad","065567554",1, "43");
-INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('2','admin', 'USER', '123','m','j','ns','broj', 1, '34');
-INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('3','admin_fanzone', 'ADMIN_FANZONE', '123','s','s','ns','broj',1, '45');
-INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('4','nevena.sumar@gmail.com', 'USER', '123','wvwe','svg','ns','broj',1, '459');
+INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('2',"nicic.damjan@gmail.com", 'USER', '123','m','j','ns','broj', 1, '34');
+INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('3',"nicic.damjansrb@gmail.com", 'ADMIN_FANZONE', '123','s','s','ns','broj',1, '45');
+INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('4',"nevena.sumar@gmail.com", 'USER', '123','wvwe','svg','ns','broj',1, '459');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('1', 'Novi Sad', 'SNP');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('2', 'Beograd', 'P.Mladih');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('3', 'Nis', 'pozoristeNis');
@@ -16,7 +16,7 @@ INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxo
 INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxoffice`) VALUES ('2', 'olovka', 'opisolovka','slikaolovka','200','p.mladih');
 INSERT INTO `peca`.`product` (`id`, `name`, `description`,`image`,`price`, `boxoffice`) VALUES ('3', 'bicikl', 'biciklopis','slikbicikl','300','cair');
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('1', '100','2','3');
-INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('2', '50','2','1');
+INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('2', '50','3','1');
 INSERT INTO `peca`.`offer` (`id`, `bid`, `ad_id`,`user_id`) VALUES ('3', '60','2','2');
 INSERT INTO `peca`.`cinema_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`) VALUES ('RockyBalboa', 'S.Stalone','action','Hickok','130', 'c:/images', '8.6','boks');
 INSERT INTO `peca`.`theatre_projection` (`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`) VALUES ('RockyBalboa', 'S.Stalone','action','Hickok','130', 'c:/images', '8.6','boks');
