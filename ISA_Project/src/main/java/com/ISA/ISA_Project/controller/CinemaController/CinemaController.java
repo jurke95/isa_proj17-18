@@ -17,11 +17,13 @@ import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.domain.CinemaProjection;
+import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.CinemaRepository;
 import com.ISA.ISA_Project.response.CinemaRepertoarResponse;
 import com.ISA.ISA_Project.response.CinemaResponse;
 import com.ISA.ISA_Project.service.CinemaProjectionService;
 import com.ISA.ISA_Project.service.CinemaService;
+import com.ISA.ISA_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @RestController
@@ -35,6 +37,9 @@ public class CinemaController {
 
     @Autowired 
     private CinemaService cinemaService;
+    
+    @Autowired 
+    private UserService userService;
     
     @Autowired 
     private CinemaProjectionService cinemaProjectionService;
@@ -71,13 +76,16 @@ public class CinemaController {
 		c.setName(cinemaDTO.getName());
 		c.setLocation(cinemaDTO.getLocation());
 		c.setAdmin(cinemaDTO.getAdmin());
-	/*	
-		if(cinemaService.checkUniqueId(c.getId()) ==false){
-			
-			return new MessageResponseDTO("There is already Cinema with the same ID");
-			
-		}
-		*/
+		c.setPromOpis(cinemaDTO.getPromOpis());
+		
+	   
+		  if(cinemaDTO.getAdmin()!=null){
+			  User admincin=userService.findOneUserByEmail(cinemaDTO.getAdmin());
+		      admincin.setRole("ADMIN_CINEMA");
+		  
+		    userService.saveUser(admincin);
+		  }
+	
 		if(cinemaService.checkUniqueName(c.getName())==false){
 			
 			return new MessageResponseDTO("There is alrady Cinema with that name");

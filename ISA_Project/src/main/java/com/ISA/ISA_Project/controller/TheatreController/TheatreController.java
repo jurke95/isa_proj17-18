@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ISA.ISA_Project.controller.TheatreController.dto.TheatreDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Theatre;
+import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.TheatreRepository;
 import com.ISA.ISA_Project.response.TheatreResponse;
 import com.ISA.ISA_Project.service.TheatreService;
+import com.ISA.ISA_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 @RestController
@@ -32,6 +34,9 @@ public class TheatreController {
 	
 	@Autowired 
 	private TheatreService theatreService;
+	
+	@Autowired 
+	private UserService userService;
 	
 	@JsonValue
 	@GetMapping("/getTheatres")
@@ -67,6 +72,9 @@ public class TheatreController {
 		t.setLocation(theatreDTO.getLocation());
 		t.setAdmin(theatreDTO.getAdmin());
 		
+		User adminthe=userService.findOneUserByEmail(theatreDTO.getAdmin());
+		adminthe.setRole("ADMIN_THEATRE");
+		userService.saveUser(adminthe);
 		/*
 		if(theatreService.checkUniqueId(t.getId()) ==false){
 			
