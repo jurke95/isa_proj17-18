@@ -24,6 +24,8 @@ public class Cinema implements Serializable {
 	private String location;
 	
 	private String promOpis;
+	
+	private String admin;
 /*
 	@OneToOne(mappedBy = "cinema")
 	private CinemaRepertoar repertoar;
@@ -68,6 +70,17 @@ public class Cinema implements Serializable {
 	public void setPromOpis(String promOpis) {
 		this.promOpis = promOpis;
 	}
+
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+	
+	
+	
 	/*
   @JsonIgnore
 	public CinemaRepertoar getRepertoar() {

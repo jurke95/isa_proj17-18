@@ -8,6 +8,7 @@ public class TheatreDTO {
 	private String location;
 	//private List<Projection>repertoar;
 	private String promOpis;
+	private String admin;
 
 	public TheatreDTO(){
 		
@@ -51,6 +52,14 @@ public class TheatreDTO {
 
 	public void setPromOpis(String promOpis) {
 		this.promOpis = promOpis;
+	}
+
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
 	}
 	
 	

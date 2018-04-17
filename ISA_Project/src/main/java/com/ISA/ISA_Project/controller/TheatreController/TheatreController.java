@@ -58,18 +58,22 @@ public class TheatreController {
 	
 	
 	@PostMapping("/registration")
+	@JsonValue
 	public MessageResponseDTO registrationThe(@RequestBody TheatreDTO theatreDTO){
 		
 		Theatre t=new Theatre();
-		t.setId(theatreDTO.getId());
+		//t.setId(theatreDTO.getId());
 		t.setName(theatreDTO.getName());
 		t.setLocation(theatreDTO.getLocation());
+		t.setAdmin(theatreDTO.getAdmin());
 		
+		/*
 		if(theatreService.checkUniqueId(t.getId()) ==false){
 			
 			return new MessageResponseDTO("There is already Theatre with the same ID");
 			
 		}
+		*/
 		if(theatreService.checkUniqueName(t.getName())==false){
 			
 			return new MessageResponseDTO("There is alrady Theatre with that name");

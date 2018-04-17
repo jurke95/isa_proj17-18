@@ -20,6 +20,7 @@ public class Theatre implements Serializable{
 	private String location;
 	//private List<Projection>repertoar;
 	private String promOpis;
+	private String admin;
 	/*
 	@OneToMany
 	@JoinColumn(name = "theatreprojection_id")
@@ -67,6 +68,16 @@ public class Theatre implements Serializable{
 	public void setPromOpis(String promOpis) {
 		this.promOpis = promOpis;
 	}
+
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
+	}
+	
+	
 /*
 	public Set<TheatreProjection> getRepertoar() {
 		return repertoar;

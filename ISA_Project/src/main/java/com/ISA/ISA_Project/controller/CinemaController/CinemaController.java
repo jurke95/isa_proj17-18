@@ -67,15 +67,17 @@ public class CinemaController {
 	public MessageResponseDTO registrationCin(@RequestBody CinemaDTO cinemaDTO){
 		System.out.println("usao u post");
 		Cinema c=new Cinema();
-		c.setId(cinemaDTO.getId()); 
+		//c.setId(cinemaDTO.getId()); 
 		c.setName(cinemaDTO.getName());
 		c.setLocation(cinemaDTO.getLocation());
-		
+		c.setAdmin(cinemaDTO.getAdmin());
+	/*	
 		if(cinemaService.checkUniqueId(c.getId()) ==false){
 			
 			return new MessageResponseDTO("There is already Cinema with the same ID");
 			
 		}
+		*/
 		if(cinemaService.checkUniqueName(c.getName())==false){
 			
 			return new MessageResponseDTO("There is alrady Cinema with that name");
