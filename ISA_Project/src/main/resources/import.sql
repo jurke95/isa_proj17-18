@@ -1,10 +1,11 @@
 INSERT INTO `peca`.`cinema` (`id`, `location`, `name`) VALUES ('1', 'Novi Sad', 'Arena');
 INSERT INTO `peca`.`cinema` (`id`, `location`, `name`) VALUES ('2', 'Beograd', 'Zvezdara');
 INSERT INTO `peca`.`cinema` (`id`, `location`, `name`) VALUES ('3', 'Nis', 'Cair');
-INSERT INTO peca.user (id,email, role, password,name, surname,city,phonenumber, active, confirmationToken) VALUES (1,"markivicius@hotmail.com","USER", "123","Marko","Juric","Novi Sad","065567554",1, "43");
+INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('1',"markivicius@hotmail.com","USER", "123","Marko","Juric","Novi Sad","065567554",1, "43");
 INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('2',"nicic.damjan@gmail.com", 'USER', '123','m','j','ns','broj', 1, '34');
 INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('3',"nicic.damjansrb@gmail.com", 'ADMIN_FANZONE', '123','s','s','ns','broj',1, '45');
 INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('4',"nevena.sumar@gmail.com", 'USER', '123','wvwe','svg','ns','broj',1, '459');
+INSERT INTO `peca`.`user` (`id`,`email`, `role`, `password`,`name`, `surname`, `city`,`phonenumber`, `active`, `confirmationToken`) VALUES ('5',"admin.system@gmail.com", 'ADMIN_SYSTEM', '123','Milan','Tosic','ns','06445',1, '459');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('1', 'Novi Sad', 'SNP');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('2', 'Beograd', 'P.Mladih');
 INSERT INTO `peca`.`theatre` (`id`, `location`, `name`) VALUES ('3', 'Nis', 'pozoristeNis');
