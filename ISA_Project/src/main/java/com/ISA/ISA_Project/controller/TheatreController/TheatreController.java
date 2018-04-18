@@ -1,6 +1,7 @@
 package com.ISA.ISA_Project.controller.TheatreController;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,10 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ISA.ISA_Project.controller.TheatreController.dto.TheatreDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
+import com.ISA.ISA_Project.domain.CinemaProjection;
+import com.ISA.ISA_Project.domain.CinemaRepertoar;
 import com.ISA.ISA_Project.domain.Theatre;
+import com.ISA.ISA_Project.domain.TheatreProjection;
+import com.ISA.ISA_Project.domain.TheatreRepertoar;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.TheatreRepository;
 import com.ISA.ISA_Project.response.TheatreResponse;
+import com.ISA.ISA_Project.service.TheatreProjectionService;
+import com.ISA.ISA_Project.service.TheatreRepertoarService;
 import com.ISA.ISA_Project.service.TheatreService;
 import com.ISA.ISA_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -34,6 +41,12 @@ public class TheatreController {
 	
 	@Autowired 
 	private TheatreService theatreService;
+	
+	@Autowired 
+	private TheatreRepertoarService theatreRepertoarService;
+	
+	@Autowired 
+	private TheatreProjectionService theatreProjectionService;
 	
 	@Autowired 
 	private UserService userService;
@@ -71,17 +84,19 @@ public class TheatreController {
 		t.setName(theatreDTO.getName());
 		t.setLocation(theatreDTO.getLocation());
 		t.setAdmin(theatreDTO.getAdmin());
+		t.setPromOpis(theatreDTO.getPromOpis());
 		
-		User adminthe=userService.findOneUserByEmail(theatreDTO.getAdmin());
-		adminthe.setRole("ADMIN_THEATRE");
-		userService.saveUser(adminthe);
-		/*
-		if(theatreService.checkUniqueId(t.getId()) ==false){
-			
-			return new MessageResponseDTO("There is already Theatre with the same ID");
-			
-		}
-		*/
+		 if(theatreDTO.getAdmin()!=null){
+			  User adminthe=userService.findOneUserByEmail(theatreDTO.getAdmin());
+		      adminthe.setRole("ADMIN_THEATRE");
+		  
+		    userService.saveUser(adminthe);
+		  }
+		
+		
+		
+		
+		
 		if(theatreService.checkUniqueName(t.getName())==false){
 			
 			return new MessageResponseDTO("There is alrady Theatre with that name");
@@ -118,6 +133,22 @@ public class TheatreController {
 	}
 	
 	
+	@GetMapping("repertoar/{id}")
+	public Set<TheatreProjection> getRepertoar(@PathVariable("id")Long id){
+		
+		TheatreRepertoar tr=theatreRepertoarService.getRepertoarFromTheatre(id);
+		
+
+		
+		Set<TheatreProjection>tps=theatreProjectionService.getAllByRepertoar(tr.getId());
+		
+			
+		
+		return tps;
+		
+		
+		
+	}
 	
 	
 	

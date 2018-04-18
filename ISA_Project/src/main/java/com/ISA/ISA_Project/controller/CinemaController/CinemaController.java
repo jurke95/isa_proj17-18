@@ -134,7 +134,7 @@ public class CinemaController {
 
 		
 		Set<CinemaProjection>cps=cinemaProjectionService.getAllByRepertoar(cr.getId());
-		System.out.println(cps);
+		
 		
 		
 		return cps;

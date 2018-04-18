@@ -28,7 +28,7 @@ public class TheatreProjection implements Serializable {
 	private String storyline;
 
 	@ManyToOne
-	@JoinColumn(name="theatrerepertoar_id")
+	@JoinColumn(name="trepertoar")
 	private TheatreRepertoar trepertoar;
 	
 	public TheatreProjection() {

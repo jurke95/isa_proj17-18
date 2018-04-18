@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TheatreRepertoar implements Serializable {
 
@@ -20,7 +22,7 @@ public class TheatreRepertoar implements Serializable {
 	
 	
 	@OneToOne
-	@JoinColumn(name="theatre_id")
+	@JoinColumn(name="theatre")
 	private Theatre theatre;
 	
 	@OneToMany(mappedBy = "trepertoar")
@@ -42,6 +44,7 @@ public class TheatreRepertoar implements Serializable {
 		this.theatre = theatre;
 	}
 
+	@JsonIgnore
 	public Set<TheatreProjection> getProjections() {
 		return projections;
 	}
