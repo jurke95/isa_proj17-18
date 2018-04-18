@@ -30,6 +30,7 @@ public class CinemaProjection implements Serializable {
 	private String rating;
 	private String storyline;
 	
+	
 	@ManyToOne
 	@JoinColumn(name="crepertoar")
 	private CinemaRepertoar crepertoar;

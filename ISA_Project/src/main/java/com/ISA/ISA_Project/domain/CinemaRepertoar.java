@@ -22,7 +22,7 @@ public class CinemaRepertoar implements Serializable {
 	
 	
 	@OneToOne
-	@JoinColumn(name="cinema_id")
+	@JoinColumn(name="cinema")
 	private Cinema cinema;
 	
 	@OneToMany(mappedBy = "crepertoar")

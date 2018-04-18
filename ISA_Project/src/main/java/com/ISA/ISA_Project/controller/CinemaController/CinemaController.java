@@ -17,11 +17,13 @@ import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.domain.CinemaProjection;
+import com.ISA.ISA_Project.domain.CinemaRepertoar;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.CinemaRepository;
 import com.ISA.ISA_Project.response.CinemaRepertoarResponse;
 import com.ISA.ISA_Project.response.CinemaResponse;
 import com.ISA.ISA_Project.service.CinemaProjectionService;
+import com.ISA.ISA_Project.service.CinemaRepertoarService;
 import com.ISA.ISA_Project.service.CinemaService;
 import com.ISA.ISA_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -43,6 +45,9 @@ public class CinemaController {
     
     @Autowired 
     private CinemaProjectionService cinemaProjectionService;
+    
+    @Autowired 
+    private CinemaRepertoarService cinemaRepertoarService;
     
     @JsonValue
 	@GetMapping("/getCinemas")
@@ -122,10 +127,17 @@ public class CinemaController {
 	
 	
 	@GetMapping("repertoar/{id}")
-	public CinemaRepertoarResponse getRepertoar(@PathVariable("id")Long id){
-		System.out.println("dosaooo  "+id);
-		Set<CinemaProjection> r=cinemaProjectionService.getAllByRepertoar(id);
-		return new CinemaRepertoarResponse(r);
+	public Set<CinemaProjection> getRepertoar(@PathVariable("id")Long id){
+		
+		CinemaRepertoar cr=cinemaRepertoarService.getRepertoarFromCinema(id);
+		
+
+		
+		Set<CinemaProjection>cps=cinemaProjectionService.getAllByRepertoar(cr.getId());
+		System.out.println(cps);
+		
+		
+		return cps;
 		
 		
 		
