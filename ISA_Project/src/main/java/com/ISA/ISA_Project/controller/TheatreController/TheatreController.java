@@ -150,6 +150,18 @@ public class TheatreController {
 		
 	}
 	
+	@GetMapping("/getProjectionByTheatre/{name}")
+	public Set<TheatreProjection> getProjectionByTheatre(@PathVariable("name")String name){
+		
+		
+		Theatre t=theatreService.getTheatreByName(name);
+		TheatreRepertoar tr=theatreRepertoarService.getRepertoarFromTheatre(t.getId());
+		
+		Set<TheatreProjection>tps=theatreProjectionService.getAllByRepertoar(tr.getId());
+		return tps;
+		
+	}
+	
 	
 	
 	

@@ -72,4 +72,10 @@ public void TheatreDelete(Long id){
 
 	
 
+public Theatre getTheatreByName(String name){
+	
+	return therep.findOneByName(name);
+}
+
+
 }

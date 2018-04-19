@@ -18,6 +18,9 @@ import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.domain.CinemaProjection;
 import com.ISA.ISA_Project.domain.CinemaRepertoar;
+import com.ISA.ISA_Project.domain.Theatre;
+import com.ISA.ISA_Project.domain.TheatreProjection;
+import com.ISA.ISA_Project.domain.TheatreRepertoar;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.CinemaRepository;
 import com.ISA.ISA_Project.response.CinemaRepertoarResponse;
@@ -144,7 +147,17 @@ public class CinemaController {
 	}
 	
 	
-	
+	@GetMapping("/getProjectionByCinema/{name}")
+	public Set<CinemaProjection> getProjectionByCinema(@PathVariable("name")String name){
+		
+		
+		Cinema c=cinemaService.getCinemaByName(name);
+		CinemaRepertoar cr=cinemaRepertoarService.getRepertoarFromCinema(c.getId());
+		
+		Set<CinemaProjection>cps=cinemaProjectionService.getAllByRepertoar(cr.getId());
+		return cps;
+		
+	}
 	
 	
 	

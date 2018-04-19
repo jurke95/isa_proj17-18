@@ -32,6 +32,10 @@ public class CinemaService {
 		return cinrep.findOneById(id);
 	}
 	
+	public Cinema getCinemaByName(String name){
+		
+		return cinrep.findOneByName(name);
+	}
 	
 	
 	public Cinema registrateCinema(Cinema cinema){
