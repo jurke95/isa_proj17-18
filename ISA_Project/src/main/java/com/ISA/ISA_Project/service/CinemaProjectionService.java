@@ -36,4 +36,9 @@ public class CinemaProjectionService {
 		System.out.println("dosaooo u servis  "+id);
 		return cinemaProjectionRepository.findAllByCrepertoar(id);
 	}
+	
+	public CinemaProjection findOneByName(String name){
+		
+		return cinemaProjectionRepository.findOneByName(name);
+	}
 }

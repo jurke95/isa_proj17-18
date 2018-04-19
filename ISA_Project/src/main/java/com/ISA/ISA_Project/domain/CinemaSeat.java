@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -30,9 +32,9 @@ public class CinemaSeat implements Serializable  {
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "cinemahall_id")
+	@JoinColumn(name = "cinemahall")
 		
-	private CinemaHall hall;
+	private CinemaHall cinemahall;
 	
 	private int row;
 	
@@ -44,12 +46,22 @@ public class CinemaSeat implements Serializable  {
 	
 	private boolean isfree;
 
-	public CinemaHall getHall() {
-		return hall;
+
+    @JsonIgnore
+	public CinemaHall getCinemahall() {
+		return cinemahall;
 	}
 
-	public void setHall(CinemaHall hall) {
-		this.hall = hall;
+	public void setCinemahall(CinemaHall cinemahall) {
+		this.cinemahall = cinemahall;
+	}
+
+	public int getSeatnumber() {
+		return seatnumber;
+	}
+
+	public void setSeatnumber(int seatnumber) {
+		this.seatnumber = seatnumber;
 	}
 
 	public int getRow() {

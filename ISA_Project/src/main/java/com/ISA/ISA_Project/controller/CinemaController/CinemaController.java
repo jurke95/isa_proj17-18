@@ -1,5 +1,8 @@
 package com.ISA.ISA_Project.controller.CinemaController;
 
+import java.io.Console;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -11,23 +14,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Cinema;
+import com.ISA.ISA_Project.domain.CinemaHall;
 import com.ISA.ISA_Project.domain.CinemaProjection;
 import com.ISA.ISA_Project.domain.CinemaRepertoar;
-import com.ISA.ISA_Project.domain.Theatre;
-import com.ISA.ISA_Project.domain.TheatreProjection;
-import com.ISA.ISA_Project.domain.TheatreRepertoar;
+import com.ISA.ISA_Project.domain.CinemaTerm;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.CinemaRepository;
-import com.ISA.ISA_Project.response.CinemaRepertoarResponse;
 import com.ISA.ISA_Project.response.CinemaResponse;
+import com.ISA.ISA_Project.service.CinemaHallService;
 import com.ISA.ISA_Project.service.CinemaProjectionService;
 import com.ISA.ISA_Project.service.CinemaRepertoarService;
 import com.ISA.ISA_Project.service.CinemaService;
+import com.ISA.ISA_Project.service.CinemaTermService;
 import com.ISA.ISA_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -51,6 +55,12 @@ public class CinemaController {
     
     @Autowired 
     private CinemaRepertoarService cinemaRepertoarService;
+    
+    @Autowired 
+    private CinemaTermService cinemaTermService;
+    
+    @Autowired 
+    private CinemaHallService cinemaHallService;
     
     @JsonValue
 	@GetMapping("/getCinemas")
@@ -159,9 +169,40 @@ public class CinemaController {
 		
 	}
 	
+	@GetMapping("/getDateByCinemaProjection/{name}")
+	public Set<CinemaTerm> getDateByCinemaProjection(@RequestParam("projectionName") String projectionName,@PathVariable("name")String name){
+		
+		System.out.println(projectionName+" ovo je ime projekcije");
+		System.out.println(name+ " ovo je ime bioskopa ");
+		
+		Cinema c=cinemaService.getCinemaByName(name);
+		CinemaRepertoar cr=cinemaRepertoarService.getRepertoarFromCinema(c.getId());
+		Set<CinemaProjection>cps=cinemaProjectionService.getAllByRepertoar(cr.getId());
+		Iterator<CinemaProjection> iterator = cps.iterator();
+	    while(iterator.hasNext()) {
+	    	CinemaProjection projection = iterator.next();
+	    	
+	    	System.out.println(projection.getName()+"=="+ projectionName);
+	    		        if(projection.getName().equals(projectionName)) {
+	    		        	System.out.println("Usao u if");
+	        	Set<CinemaTerm>cinemaTerm =cinemaTermService.getAllTermsByCprojection(projection.getId());
+	        	return cinemaTerm;
+	        }
+	    }
+			
+		return null;
+		
+	}
 	
-	
-	
+	@GetMapping("/getHallByTerm/{id}")
+	public CinemaHall getHallByTerm(@PathVariable("id")Long id){
+		
+		
+		CinemaTerm  cinemaTerm=cinemaTermService.getTermById(id);
+				
+		return  cinemaTerm.getCinemahall();
+		
+	}
 	
 	
 	

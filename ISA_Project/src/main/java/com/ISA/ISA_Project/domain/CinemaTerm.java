@@ -2,6 +2,7 @@ package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class CinemaTerm implements Serializable {
@@ -18,31 +24,45 @@ public class CinemaTerm implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "cinemahall_id")
-	private CinemaHall cinemaHall;
+	@JoinColumn(name = "cinemahall")
+	private CinemaHall cinemahall;
 
 	private Long price;
+	
+	@JsonFormat(pattern="KK:mm")
 	private Time time;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="UTC+1")
+	private Date date;
+	
 	@ManyToOne
-	@JoinColumn(name="cinemaprojection_id")
-	private CinemaProjection projection;
+	@JoinColumn(name="cprojection")
+	private CinemaProjection cprojection;
 
 	public CinemaTerm() {
 		
 	}
 
 	
+	
 
-	public CinemaHall getCinemaHall() {
-		return cinemaHall;
+
+  @JsonIgnore
+	public CinemaHall getCinemahall() {
+		return cinemahall;
 	}
 
 
 
-	public void setCinemaHall(CinemaHall cinemaHall) {
-		this.cinemaHall = cinemaHall;
+
+
+
+	public void setCinemahall(CinemaHall cinemahall) {
+		this.cinemahall = cinemahall;
 	}
+
+
+
 
 
 
@@ -76,14 +96,33 @@ public class CinemaTerm implements Serializable {
 
 
 
-	public CinemaProjection getProjection() {
-		return projection;
+
+
+
+ @JsonIgnore
+	public CinemaProjection getCprojection() {
+		return cprojection;
 	}
 
 
 
-	public void setProjection(CinemaProjection projection) {
-		this.projection = projection;
+	public void setCprojection(CinemaProjection cprojection) {
+		this.cprojection = cprojection;
 	}
 
+
+	  
+	public Date getDate() {
+		return date;
+	}
+
+
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	
+	
+	
 }

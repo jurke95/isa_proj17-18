@@ -1,8 +1,11 @@
 package com.ISA.ISA_Project.service;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ISA.ISA_Project.domain.CinemaHall;
 import com.ISA.ISA_Project.domain.CinemaTerm;
 
 import com.ISA.ISA_Project.repository.CinemaTermRepository;
@@ -27,5 +30,17 @@ public class CinemaTermService {
 		}
 	
 	
+	   public Set<CinemaTerm> getAllTermsByCprojection(Long id){
+		   
+		   
+		   return cinemaTermRepository.findAllByCprojection(id);
+	   }
+	   
+	   
+	   public CinemaTerm getTermById(Long id){
+			
+			return cinemaTermRepository.findOneById(id);
+		}
+	 
 	
 }

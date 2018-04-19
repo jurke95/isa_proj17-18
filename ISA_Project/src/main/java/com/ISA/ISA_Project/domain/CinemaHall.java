@@ -35,7 +35,7 @@ public class CinemaHall implements Serializable  {
 	
 	
 	
-	@OneToMany(mappedBy = "hall")
+	@OneToMany(mappedBy = "cinemahall")
 	private Set<CinemaSeat> seats;
 
 	

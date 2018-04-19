@@ -40,8 +40,16 @@ INSERT INTO `peca`.`theatre_projection`(`name`, `actors`,`geners`, `director`,`r
 INSERT INTO `peca`.`theatre_projection`(`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`trepertoar`) VALUES ('Cigani lete u nebo','I.Bosiljcic,I.Knezevic','mjuzikl','D.Stanojevic','130',"http://www.narodnopozoristenis.rs/wp-content/uploads/2017/12/Cigani-lete-u-nebo-cover.jpg", '8.6',"Mladic koji se zvao Aleksej Maksimovic sin siromasnog radnika,siroce koje je rano ostalo bez oca,imao je 24 godine kada je dospeo u tamnicu..",'3');
 INSERT INTO `peca`.`theatre_projection`(`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`trepertoar`) VALUES ('Pop Cira i pop Spira','M.Samolov,J.Maksic','roman','S.Sremac','130',"https://static.kupindoslike.com/Pop-Cira-i-pop-Spira-Stevan-Sremac_slika_O_44723089.jpg", '8.6',"Romanticna komedija u kojoj dve popovske kuce zive idilicno,sve dok se u njihovim zivotima ne pojavi mladi ucitelj,u kome obe porodice vide savrsenu priliku za udaju svojih kceri",'1');
 
+
 INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('1', 'sala1','2');
 INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('2', 'sala1','1');
 INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('3', 'sala2','1');
 INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('4', 'sala2','2');
-INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall_id`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('1','1','1','1','VIP',1);
+
+INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('1', '1','350','12:07','2018-07-20','2');
+INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('2', '1','300','14:33','2018-07-12','2');
+INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('3', '3','200','15:35','2018-01-16','2');
+INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('4', '1','100','10:15','2018-07-26','1');
+INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('5', '4','200','16:38','2018-04-16','3');
+
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('1','1','1','1','VIP',1);
