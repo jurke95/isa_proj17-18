@@ -72,13 +72,7 @@ public class CinemaSeat implements Serializable  {
 		this.row = row;
 	}
 
-	public int getSeatNumber() {
-		return seatnumber;
-	}
-
-	public void setSeatNumber(int seatNumber) {
-		this.seatnumber = seatNumber;
-	}
+	
 
 	public HallSegment getSegment() {
 		return segment;

@@ -39,7 +39,9 @@ public class CinemaHall implements Serializable  {
 	private Set<CinemaSeat> seats;
 
 	
-
+   private int rows;
+   
+   private int columns;
 
 	public Long getId() {
 		return id;
@@ -92,6 +94,34 @@ public class CinemaHall implements Serializable  {
 
 	public void setSeats(Set<CinemaSeat> seats) {
 		this.seats = seats;
+	}
+
+
+
+
+	public int getRows() {
+		return rows;
+	}
+
+
+
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+
+
+
+	public int getColumns() {
+		return columns;
+	}
+
+
+
+
+	public void setColumns(int columns) {
+		this.columns = columns;
 	}
 	
 	

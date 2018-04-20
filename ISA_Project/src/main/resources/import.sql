@@ -41,10 +41,10 @@ INSERT INTO `peca`.`theatre_projection`(`name`, `actors`,`geners`, `director`,`r
 INSERT INTO `peca`.`theatre_projection`(`name`, `actors`,`geners`, `director`,`runtime`, `poster`, `rating`,`storyline`,`trepertoar`) VALUES ('Pop Cira i pop Spira','M.Samolov,J.Maksic','roman','S.Sremac','130',"https://static.kupindoslike.com/Pop-Cira-i-pop-Spira-Stevan-Sremac_slika_O_44723089.jpg", '8.6',"Romanticna komedija u kojoj dve popovske kuce zive idilicno,sve dok se u njihovim zivotima ne pojavi mladi ucitelj,u kome obe porodice vide savrsenu priliku za udaju svojih kceri",'1');
 
 
-INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('1', 'sala1','2');
-INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('2', 'sala1','1');
-INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('3', 'sala2','1');
-INSERT INTO `peca`.`cinema_hall` (`id`, `name`, `cinema_id`) VALUES ('4', 'sala2','2');
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`,`rows`,`columns`,`cinema_id`) VALUES ('1', 'sala1','5','5','2');
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`,`rows`,`columns`,`cinema_id`) VALUES ('2', 'sala1','6','6','1');
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`,`rows`,`columns`,`cinema_id`) VALUES ('3', 'sala2','4','4','1');
+INSERT INTO `peca`.`cinema_hall` (`id`, `name`,`rows`,`columns`,`cinema_id`) VALUES ('4', 'sala2','3','3','2');
 
 INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('1', '1','350','12:07','2018-07-20','2');
 INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('2', '1','300','14:33','2018-07-12','2');
@@ -53,3 +53,19 @@ INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cpr
 INSERT INTO `peca`.`cinema_term` (`id`, `cinemahall`, `price`,`time`,`date`,`cprojection`) VALUES ('5', '4','200','16:38','2018-04-16','3');
 
 INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('1','1','1','1','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('2','1','1','2','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('3','1','1','3','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('4','1','1','4','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('5','1','1','5','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('6','1','1','6','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('7','1','1','7','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('8','1','1','8','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('9','1','2','1','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('10','1','2','2','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('11','1','2','3','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('12','1','2','4','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('13','1','2','5','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('14','1','2','6','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('15','1','2','7','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('16','1','2','8','VIP',1);
+INSERT INTO `peca`.`cinema_seat` (`id`, `cinemahall`, `row`, `seatnumber`,`segment`,`isfree`) VALUES ('17','1','3','1','VIP',1);
