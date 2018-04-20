@@ -2,6 +2,7 @@ package com.ISA.ISA_Project.domain;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class TheatreTerm implements Serializable {
@@ -18,29 +22,36 @@ public class TheatreTerm implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="theatrehall_id")
-	private TheatreHall theatreHall;
+	@JoinColumn(name="theatrehall")
+	private TheatreHall theatrehall;
 	
 	private Long price;
+	@JsonFormat(pattern="KK:mm")
 	private Time time;
 	
 	@ManyToOne
-	@JoinColumn(name="theatreprojection_id")
-	private TheatreProjection projection;
+	@JoinColumn(name="tprojection")
+	private TheatreProjection tprojection;
 	
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date date;
 	
 	public TheatreTerm() {
 		
 	}
 
-	public TheatreHall getTheatreHall() {
-		return theatreHall;
+	 @JsonIgnore
+	public TheatreHall getTheatrehall() {
+		return theatrehall;
 	}
 
-	public void setTheatreHall(TheatreHall theatreHall) {
-		this.theatreHall = theatreHall;
+
+
+	public void setTheatrehall(TheatreHall theatrehall) {
+		this.theatrehall = theatrehall;
 	}
+
+
 
 	public Long getPrice() {
 		return price;
@@ -65,14 +76,25 @@ public class TheatreTerm implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public TheatreProjection getProjection() {
-		return projection;
+	
+	@JsonIgnore
+	public TheatreProjection getTprojection() {
+		return tprojection;
 	}
 
-	public void setProjection(TheatreProjection projection) {
-		this.projection = projection;
+	public void setTprojection(TheatreProjection tprojection) {
+		this.tprojection = tprojection;
 	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	
 	
 	
 }

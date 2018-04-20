@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TheatreProjection implements Serializable {
 
@@ -107,6 +109,7 @@ public class TheatreProjection implements Serializable {
 		this.storyline = storyline;
 	}
 
+	@JsonIgnore
 	public TheatreRepertoar getTrepertoar() {
 		return trepertoar;
 	}

@@ -27,13 +27,13 @@ public class TheatreSeat implements Serializable  {
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "theatrehall_id")
+	@JoinColumn(name = "theatrehall")
 		
-	private TheatreHall hall;
+	private TheatreHall theatrehall;
 	
 	private int row;
 	
-	private int seatNumber;
+	private int seatnumber;
 	
 	@Enumerated(EnumType.STRING)
 	private HallSegment segment;
@@ -42,13 +42,16 @@ public class TheatreSeat implements Serializable  {
 	private boolean isfree;
 
 
-	public TheatreHall getHall() {
-		return hall;
+	
+
+
+	public TheatreHall getTheatrehall() {
+		return theatrehall;
 	}
 
 
-	public void setHall(TheatreHall hall) {
-		this.hall = hall;
+	public void setTheatrehall(TheatreHall theatrehall) {
+		this.theatrehall = theatrehall;
 	}
 
 
@@ -62,13 +65,16 @@ public class TheatreSeat implements Serializable  {
 	}
 
 
-	public int getSeatNumber() {
-		return seatNumber;
+	
+
+
+	public int getSeatnumber() {
+		return seatnumber;
 	}
 
 
-	public void setSeatNumber(int seatNumber) {
-		this.seatNumber = seatNumber;
+	public void setSeatnumber(int seatnumber) {
+		this.seatnumber = seatnumber;
 	}
 
 

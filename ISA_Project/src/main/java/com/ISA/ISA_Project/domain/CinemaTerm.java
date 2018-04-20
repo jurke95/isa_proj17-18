@@ -32,7 +32,7 @@ public class CinemaTerm implements Serializable {
 	@JsonFormat(pattern="KK:mm")
 	private Time time;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd",timezone="UTC+1")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@ManyToOne
