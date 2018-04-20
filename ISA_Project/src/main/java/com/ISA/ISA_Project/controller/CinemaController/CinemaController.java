@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaDTO;
+import com.ISA.ISA_Project.controller.CinemaController.dto.CinemaTicketDTO;
 import com.ISA.ISA_Project.controller.dto.MessageResponseDTO;
 import com.ISA.ISA_Project.domain.Cinema;
 import com.ISA.ISA_Project.domain.CinemaHall;
 import com.ISA.ISA_Project.domain.CinemaProjection;
 import com.ISA.ISA_Project.domain.CinemaRepertoar;
 import com.ISA.ISA_Project.domain.CinemaTerm;
+import com.ISA.ISA_Project.domain.ReservationCinemaTicket;
 import com.ISA.ISA_Project.domain.User;
 import com.ISA.ISA_Project.repository.CinemaRepository;
 import com.ISA.ISA_Project.response.CinemaResponse;
@@ -32,6 +35,8 @@ import com.ISA.ISA_Project.service.CinemaProjectionService;
 import com.ISA.ISA_Project.service.CinemaRepertoarService;
 import com.ISA.ISA_Project.service.CinemaService;
 import com.ISA.ISA_Project.service.CinemaTermService;
+import com.ISA.ISA_Project.service.EmailService;
+import com.ISA.ISA_Project.service.ReservationCinemaTicketService;
 import com.ISA.ISA_Project.service.UserService;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -61,6 +66,12 @@ public class CinemaController {
     
     @Autowired 
     private CinemaHallService cinemaHallService;
+    
+    @Autowired 
+    private ReservationCinemaTicketService reservationCinemaTicketService;
+    
+    @Autowired
+	private EmailService emailService;
     
     @JsonValue
 	@GetMapping("/getCinemas")
@@ -127,6 +138,39 @@ public class CinemaController {
 		
 		
 		return new MessageResponseDTO("Cinema edited");
+	}
+	
+	@PostMapping("/reserveTicketCinema")
+	public MessageResponseDTO reserveTicketCinema(@RequestBody CinemaTicketDTO cinematicketDTO){
+		ReservationCinemaTicket rct=new ReservationCinemaTicket();
+		
+		rct.setCinemaname(cinematicketDTO.getCinemaname());
+		rct.setProjectionname(cinematicketDTO.getProjectionname());
+		rct.setReservationdate(cinematicketDTO.getReservationdate());
+		rct.setReservationtime(cinematicketDTO.getReservationtime());
+		rct.setTicketprice(cinematicketDTO.getTicketprice());
+		rct.setUsermail(cinematicketDTO.getUsermail());
+		rct.setSeatrow(cinematicketDTO.getCinemarow());
+		rct.setSeatcolumn(cinematicketDTO.getCinemacolumn());
+		
+		
+		SimpleMailMessage reservationTicketEmail=new SimpleMailMessage();
+		reservationTicketEmail.setTo(rct.getUsermail());
+		reservationTicketEmail.setSubject("Ticket reservation mail");
+		reservationTicketEmail.setText("You have successfully reserved the ticket below:\n"
+		+"Cinema name  "+rct.getCinemaname()+"\n"
+		+"Projection name  "+rct.getProjectionname()+"\n"
+		+"Date  "+rct.getReservationdate()+"\n"
+		+"Time  "+rct.getReservationtime()+"\n"
+		+"Price per seat  "+rct.getTicketprice()+" RSD"+"\n"
+		+"Seats  "+rct.getSeatcolumn()+"\n");
+		
+		emailService.sendEmail(reservationTicketEmail);
+
+		
+		
+		reservationCinemaTicketService.saveCinemaTicketReservation(rct);
+		return new MessageResponseDTO("Successfully reserved cinema ticket");
 	}
 	
 	@DeleteMapping("/deleteCinema/{id}")
