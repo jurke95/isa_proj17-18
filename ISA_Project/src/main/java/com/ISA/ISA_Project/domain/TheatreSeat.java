@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 
@@ -44,7 +46,7 @@ public class TheatreSeat implements Serializable  {
 
 	
 
-
+	@JsonIgnore
 	public TheatreHall getTheatrehall() {
 		return theatrehall;
 	}
