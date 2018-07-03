@@ -50,30 +50,23 @@ public class FriendshipController {
 	
 	
 	@PostMapping("/acceptRequest/{idf}")
-	public MessageResponseDTO acceptRequest(@PathVariable("idf") Long idf){
+	public Friendship acceptRequest(@PathVariable("idf") Long idf){
 		
 		
 		Friendship friendship=friendshipService.acceptrequest(idf);
-		
-		if(!(friendship==null)) {
-			return new MessageResponseDTO("Successfully accepted friend request");
-		}
-		return new MessageResponseDTO("Cannot accept friend request");
+		return friendship;
+	
 		
 	}
 	
 	
 	@PostMapping("/declineRequest/{idf}")
-	public MessageResponseDTO declineRequest(@PathVariable("idf") Long idf){
+	public Friendship declineRequest(@PathVariable("idf") Long idf){
 		
 		
 		Friendship friendship=friendshipService.declinerequest(idf);
-		
-		if(!(friendship==null)) {
-			return new MessageResponseDTO("Successfully declined friend request");
-		}
-		return new MessageResponseDTO("Cannot decline friend request");
-		
+	    return friendship;	
+	
 	}
 	
 	
