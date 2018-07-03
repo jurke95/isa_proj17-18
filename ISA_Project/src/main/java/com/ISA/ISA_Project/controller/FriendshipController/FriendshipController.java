@@ -54,7 +54,7 @@ public class FriendshipController {
 	
 	
 	@PostMapping("/acceptRequest/{idf}")
-	public MessageResponseDTO acceptRequest(@PathVariable("idtf") Long idf){
+	public MessageResponseDTO acceptRequest(@PathVariable("idf") Long idf){
 		
 		
 		Friendship friendship=friendshipService.acceptrequest(idf);
@@ -81,16 +81,14 @@ public class FriendshipController {
 	}
 	
 	
-	@GetMapping("/getFriend/{idf}")
-	public MessageResponseDTO getFriend(@PathVariable("idone") Long idone){
+	@GetMapping("/getFriend/{idone}")
+	public List<User> getFriend(@PathVariable("idone") Long idone){
 		
 		
 		List<User> friends=friendshipService.getfriends(idone);
+		return friends;
 		
-		if(!(friends==null)) {
-			return new MessageResponseDTO("Successfully got friends");
-		}
-		return new MessageResponseDTO("Cannot get friends");
+		
 		
 	}
 	
