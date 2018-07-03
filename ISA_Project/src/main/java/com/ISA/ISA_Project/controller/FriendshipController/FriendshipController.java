@@ -40,16 +40,12 @@ public class FriendshipController {
 	}
 	
 	@GetMapping("/getFriendRequest/{idtwo}")
-	public MessageResponseDTO getFriendRequest(@PathVariable("idtwo") Long idtwo){
+	public List<Friendship> getFriendRequest(@PathVariable("idtwo") Long idtwo){
 		
 		
 		List<Friendship> friendship=friendshipService.getfriendrequest(idtwo);
 		
-		if(!(friendship==null)) {
-			return new MessageResponseDTO("Successfully got friendship");
-		}
-		return new MessageResponseDTO("Cannot get friendship");
-		
+		return friendship;
 	}
 	
 	
